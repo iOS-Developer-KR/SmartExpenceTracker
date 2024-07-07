@@ -11,24 +11,9 @@
 		2B80111B2C3ACAE100EFF0DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80111A2C3ACAE100EFF0DF /* ContentView.swift */; };
 		2B80111D2C3ACAE100EFF0DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */; };
 		2B8011212C3ACAE100EFF0DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B8011202C3ACAE100EFF0DF /* Preview Assets.xcassets */; };
+		2B8011452C3ACCF800EFF0DF /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B8011442C3ACCF800EFF0DF /* OpenAI */; };
+		2B8011472C3ACD2400EFF0DF /* GPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8011462C3ACD2400EFF0DF /* GPT.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		2B8011272C3ACAE200EFF0DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2B80110D2C3ACAE100EFF0DF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B8011142C3ACAE100EFF0DF;
-			remoteInfo = SmartExpenceTracker;
-		};
-		2B8011312C3ACAE200EFF0DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2B80110D2C3ACAE100EFF0DF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B8011142C3ACAE100EFF0DF;
-			remoteInfo = SmartExpenceTracker;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2B8011152C3ACAE100EFF0DF /* SmartExpenceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartExpenceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,8 +22,7 @@
 		2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B80111E2C3ACAE100EFF0DF /* SmartExpenceTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartExpenceTracker.entitlements; sourceTree = "<group>"; };
 		2B8011202C3ACAE100EFF0DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2B8011262C3ACAE200EFF0DF /* SmartExpenceTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartExpenceTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B8011302C3ACAE200EFF0DF /* SmartExpenceTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartExpenceTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B8011462C3ACD2400EFF0DF /* GPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,20 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B8011232C3ACAE200EFF0DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B80112D2C3ACAE200EFF0DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				2B8011452C3ACCF800EFF0DF /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,8 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				2B8011152C3ACAE100EFF0DF /* SmartExpenceTracker.app */,
-				2B8011262C3ACAE200EFF0DF /* SmartExpenceTrackerTests.xctest */,
-				2B8011302C3ACAE200EFF0DF /* SmartExpenceTrackerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */,
+				2B8011462C3ACD2400EFF0DF /* GPT.swift */,
 				2B80111A2C3ACAE100EFF0DF /* ContentView.swift */,
 				2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */,
 				2B80111E2C3ACAE100EFF0DF /* SmartExpenceTracker.entitlements */,
@@ -120,45 +90,12 @@
 			dependencies = (
 			);
 			name = SmartExpenceTracker;
+			packageProductDependencies = (
+				2B8011442C3ACCF800EFF0DF /* OpenAI */,
+			);
 			productName = SmartExpenceTracker;
 			productReference = 2B8011152C3ACAE100EFF0DF /* SmartExpenceTracker.app */;
 			productType = "com.apple.product-type.application";
-		};
-		2B8011252C3ACAE200EFF0DF /* SmartExpenceTrackerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2B80113D2C3ACAE200EFF0DF /* Build configuration list for PBXNativeTarget "SmartExpenceTrackerTests" */;
-			buildPhases = (
-				2B8011222C3ACAE200EFF0DF /* Sources */,
-				2B8011232C3ACAE200EFF0DF /* Frameworks */,
-				2B8011242C3ACAE200EFF0DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2B8011282C3ACAE200EFF0DF /* PBXTargetDependency */,
-			);
-			name = SmartExpenceTrackerTests;
-			productName = SmartExpenceTrackerTests;
-			productReference = 2B8011262C3ACAE200EFF0DF /* SmartExpenceTrackerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2B80112F2C3ACAE200EFF0DF /* SmartExpenceTrackerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2B8011402C3ACAE200EFF0DF /* Build configuration list for PBXNativeTarget "SmartExpenceTrackerUITests" */;
-			buildPhases = (
-				2B80112C2C3ACAE200EFF0DF /* Sources */,
-				2B80112D2C3ACAE200EFF0DF /* Frameworks */,
-				2B80112E2C3ACAE200EFF0DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2B8011322C3ACAE200EFF0DF /* PBXTargetDependency */,
-			);
-			name = SmartExpenceTrackerUITests;
-			productName = SmartExpenceTrackerUITests;
-			productReference = 2B8011302C3ACAE200EFF0DF /* SmartExpenceTrackerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -173,14 +110,6 @@
 					2B8011142C3ACAE100EFF0DF = {
 						CreatedOnToolsVersion = 15.4;
 					};
-					2B8011252C3ACAE200EFF0DF = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 2B8011142C3ACAE100EFF0DF;
-					};
-					2B80112F2C3ACAE200EFF0DF = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 2B8011142C3ACAE100EFF0DF;
-					};
 				};
 			};
 			buildConfigurationList = 2B8011102C3ACAE100EFF0DF /* Build configuration list for PBXProject "SmartExpenceTracker" */;
@@ -192,13 +121,14 @@
 				Base,
 			);
 			mainGroup = 2B80110C2C3ACAE100EFF0DF;
+			packageReferences = (
+				2B8011432C3ACCF800EFF0DF /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			productRefGroup = 2B8011162C3ACAE100EFF0DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2B8011142C3ACAE100EFF0DF /* SmartExpenceTracker */,
-				2B8011252C3ACAE200EFF0DF /* SmartExpenceTrackerTests */,
-				2B80112F2C3ACAE200EFF0DF /* SmartExpenceTrackerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -213,20 +143,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B8011242C3ACAE200EFF0DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B80112E2C3ACAE200EFF0DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -236,37 +152,11 @@
 			files = (
 				2B80111B2C3ACAE100EFF0DF /* ContentView.swift in Sources */,
 				2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B8011222C3ACAE200EFF0DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B80112C2C3ACAE200EFF0DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				2B8011472C3ACD2400EFF0DF /* GPT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2B8011282C3ACAE200EFF0DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2B8011142C3ACAE100EFF0DF /* SmartExpenceTracker */;
-			targetProxy = 2B8011272C3ACAE200EFF0DF /* PBXContainerItemProxy */;
-		};
-		2B8011322C3ACAE200EFF0DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2B8011142C3ACAE100EFF0DF /* SmartExpenceTracker */;
-			targetProxy = 2B8011312C3ACAE200EFF0DF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2B8011382C3ACAE200EFF0DF /* Debug */ = {
@@ -459,96 +349,6 @@
 			};
 			name = Release;
 		};
-		2B80113E2C3ACAE200EFF0DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HM2XMG9QM;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SmartExpenceTracker.SmartExpenceTrackerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmartExpenceTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SmartExpenceTracker";
-			};
-			name = Debug;
-		};
-		2B80113F2C3ACAE200EFF0DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HM2XMG9QM;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SmartExpenceTracker.SmartExpenceTrackerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmartExpenceTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SmartExpenceTracker";
-			};
-			name = Release;
-		};
-		2B8011412C3ACAE200EFF0DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HM2XMG9QM;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SmartExpenceTracker.SmartExpenceTrackerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SmartExpenceTracker;
-			};
-			name = Debug;
-		};
-		2B8011422C3ACAE200EFF0DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HM2XMG9QM;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SmartExpenceTracker.SmartExpenceTrackerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SmartExpenceTracker;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -570,25 +370,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B80113D2C3ACAE200EFF0DF /* Build configuration list for PBXNativeTarget "SmartExpenceTrackerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B80113E2C3ACAE200EFF0DF /* Debug */,
-				2B80113F2C3ACAE200EFF0DF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2B8011402C3ACAE200EFF0DF /* Build configuration list for PBXNativeTarget "SmartExpenceTrackerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B8011412C3ACAE200EFF0DF /* Debug */,
-				2B8011422C3ACAE200EFF0DF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2B8011432C3ACCF800EFF0DF /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B8011442C3ACCF800EFF0DF /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B8011432C3ACCF800EFF0DF /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B80110D2C3ACAE100EFF0DF /* Project object */;
 }
