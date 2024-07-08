@@ -7,6 +7,7 @@
 
 import Foundation
 import OpenAI
+import UIKit
 
 class GPT {
     var openAI = OpenAI(apiToken: "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")
@@ -15,36 +16,41 @@ class GPT {
         let functions = [
             ChatQuery.ChatCompletionToolParam(function:
                 ChatQuery.ChatCompletionToolParam.FunctionDefinition(
-                  name: "get_current_weather",
-                  description: "Get the current weather in a given location",
-                  parameters:
-                    .init(
-                      type: .object,
-                      properties: [
-                        "title": .init(type: .string, description: "The city and state, e.g. San Francisco, CA"),
-                        "amount": .init(type: .string, description: "The city and state, e.g. San Francisco, CA"),
-                        "category": .init(type: .string, description: "The city and state, e.g. San Francisco, CA"),
-                        "date": .init(type: .string, description: "The city and state, e.g. San Francisco, CA"),
-                        
-                      ],
-                      required: ["location"]
-                    )
+                    name: "Analysing Reciepts",
+                    description: "Analyze this Reciepts by given image",
+                    parameters:
+                            .init(
+                                type: .object,
+                                properties: [
+                                    "title": .init(type: .string, description: "Set the title of this reciepts"),
+                                    "amount": .init(type: .string, description: "Set amount of total payment "),
+                                    "category": .init(type: .string, description: "Set category of this reciepts"),
+                                    "date": .init(type: .string, description: "Set date using of this reciepts information")
+                                ],
+                                required: ["title", "amount", "category", "date"]
+                            )
                 )
-            )
+             )
         ]
+        
+        //        let query = ChatQuery(messages: [.init(role: .tool, content: )], model: <#T##Model#>)
+        
+        if let image = UIImage(named: "curly_1"), let imageData = image.jpegData(compressionQuality: 1.0) {
+            let base64String = imageData.base64EncodedString()
+            let imageUrl = "data:image/jpeg;base64,\(base64String)"
+            let imageParam = ChatQuery.ChatCompletionMessageParam.ChatCompletionUserMessageParam.init(content: .string(imageUrl))
+            
+            let query = ChatQuery(messages: [.user(imageParam)], model: .gpt3_5Turbo, tools: functions)
 
-        let query = ChatQuery(messages: [.user(.init(content: .string(""), name: ""))], model: .gpt3_5Turbo, tools: functions)
-//        let query = ChatQuery(
-//          model: "gpt-3.5-turbo-0613",  // 0613 is the earliest version with function calls support.
-//          messages: [
-//              Chat(role: .user, content: "What's the weather like in Boston?")
-//          ],
-//          functions: functions
-//        )
-        do {
-            let result = try await openAI.chats(query: query)
-        } catch {
-            debugPrint(error.localizedDescription)
+            do {
+                let result = try await openAI.chats(query: query)
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
+            //                   messages.append(.user(imageParam))
         }
+        
+        
+
     }
 }
