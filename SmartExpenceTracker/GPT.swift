@@ -44,6 +44,7 @@ class GPT {
 
             do {
                 let result = try await openAI.chats(query: query)
+                print(result.choices.first?.message.content?.string ?? "값 없음")
             } catch {
                 debugPrint(error.localizedDescription)
             }
