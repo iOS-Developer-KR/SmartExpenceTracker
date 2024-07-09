@@ -77,6 +77,7 @@ struct PhotosSavingView: View {
                             animationOffset = 200
                         }
                     }
+                
             }
         }
         .onAppear {
