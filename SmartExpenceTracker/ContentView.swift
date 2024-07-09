@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct ContentView: View {
+    @Environment(GPT.self) var gpt
     @State private var item: PhotosPickerItem?
     
     var body: some View {
@@ -18,15 +19,18 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
             
-            PhotosPicker(selection: $item) {
-                
-            }
+            Image(uiImage: UIImage(named: "japan1")!)
+                .resizable()
             
         }
         .padding()
+        .task {
+//            await gpt.gptCall()
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .environment(GPT())
 }

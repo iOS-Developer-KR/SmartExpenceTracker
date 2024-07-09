@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SmartExpenceTrackerApp: App {
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(GPT())
         }
     }
 }

@@ -7,48 +7,64 @@
 
 import Foundation
 import OpenAI
-import UIKit
+import SwiftUI
 
+struct Receipts: Codable {
+    var title: String
+    var amount: Int
+    var category: String
+    var date: String
+}
+
+@Observable
 class GPT {
     var openAI = OpenAI(apiToken: "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")
     
     func gptCall() async {
+        print("흠")
         let functions = [
-            ChatQuery.ChatCompletionToolParam(function:
-                ChatQuery.ChatCompletionToolParam.FunctionDefinition(
-                    name: "Analysing Reciepts",
-                    description: "Analyze this Reciepts by given image",
-                    parameters:
-                            .init(
-                                type: .object,
-                                properties: [
-                                    "title": .init(type: .string, description: "Set the title of this reciepts"),
-                                    "amount": .init(type: .string, description: "Set amount of total payment "),
-                                    "category": .init(type: .string, description: "Set category of this reciepts"),
-                                    "date": .init(type: .string, description: "Set date using of this reciepts information")
-                                ],
-                                required: ["title", "amount", "category", "date"]
-                            )
+            ChatQuery.ChatCompletionToolParam(function: .init(
+                name: "Analysing-Given-Reciepts",
+                description: "Analyze this Reciepts by given image",
+                parameters:
+                        .init(
+                            type: .object,
+                            properties: [
+                                "title": .init(type: .string, description: "Set the title of this reciepts"),
+                                "amount": .init(type: .integer, description: "total payment. If you're not sure, just use USD as default value"),
+                                "category": .init(type: .string, description: "the category of expense. Set category based on the title of expense"),
+                                "date": .init(type: .string, description: "Date of expense. Set date using of this reciepts information, the date must be formatted yyy-MM-dd")
+                            ],
+                            required: ["title", "amount", "category"]
+                        )
                 )
              )
         ]
-        
-        //        let query = ChatQuery(messages: [.init(role: .tool, content: )], model: <#T##Model#>)
-        
-        if let image = UIImage(named: "curly_1"), let imageData = image.jpegData(compressionQuality: 1.0) {
-            let base64String = imageData.base64EncodedString()
-            let imageUrl = "data:image/jpeg;base64,\(base64String)"
-            let imageParam = ChatQuery.ChatCompletionMessageParam.ChatCompletionUserMessageParam.init(content: .string(imageUrl))
-            
-            let query = ChatQuery(messages: [.user(imageParam)], model: .gpt3_5Turbo, tools: functions)
 
+        if let image = UIImage(named: "japan1"), let imageData = image.jpegData(compressionQuality: 1.0) {
+            let imageParam = ChatQuery.ChatCompletionMessageParam.ChatCompletionUserMessageParam.init(
+                content: 
+                    .vision([
+                        .chatCompletionContentPartImageParam(.init(imageUrl: .init(url: imageData, detail: .high)))
+                    ])
+            )
+            
             do {
-                let result = try await openAI.chats(query: query)
-                print(result.choices.first?.message.content?.string ?? "값 없음")
+                let chatsStream = try await openAI.chats(query: ChatQuery(messages: [.user(imageParam)], model: .gpt4_o, tools: functions))
+                for chat in chatsStream.choices {
+                    if let arg = chat.message.toolCalls?.first?.function.arguments.data(using: .utf8), let decoded = try? JSONDecoder().decode(Receipts.self, from: arg) {
+                        print("해독한 json" + decoded.category + decoded.date + decoded.title)
+                    }
+                    
+                }
             } catch {
-                debugPrint(error.localizedDescription)
+                print(error.localizedDescription)
             }
-            //                   messages.append(.user(imageParam))
+            
+
+
+        } else {
+            print("else문")
         }
         
         
