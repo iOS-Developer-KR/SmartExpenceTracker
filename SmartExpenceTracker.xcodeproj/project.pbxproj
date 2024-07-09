@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B7924C22C3D6CD5004CCE54 /* abc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7924C12C3D6CD5004CCE54 /* abc.swift */; };
 		2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */; };
 		2B80111B2C3ACAE100EFF0DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80111A2C3ACAE100EFF0DF /* ContentView.swift */; };
 		2B80111D2C3ACAE100EFF0DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */; };
 		2B8011212C3ACAE100EFF0DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B8011202C3ACAE100EFF0DF /* Preview Assets.xcassets */; };
 		2B8011452C3ACCF800EFF0DF /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B8011442C3ACCF800EFF0DF /* OpenAI */; };
 		2B8011472C3ACD2400EFF0DF /* GPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8011462C3ACD2400EFF0DF /* GPT.swift */; };
-		2B8011492C3C502500EFF0DF /* japan1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B8011482C3C502500EFF0DF /* japan1.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B7924C12C3D6CD5004CCE54 /* abc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abc.swift; sourceTree = "<group>"; };
 		2B8011152C3ACAE100EFF0DF /* SmartExpenceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartExpenceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartExpenceTrackerApp.swift; sourceTree = "<group>"; };
 		2B80111A2C3ACAE100EFF0DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -24,7 +25,6 @@
 		2B80111E2C3ACAE100EFF0DF /* SmartExpenceTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartExpenceTracker.entitlements; sourceTree = "<group>"; };
 		2B8011202C3ACAE100EFF0DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2B8011462C3ACD2400EFF0DF /* GPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT.swift; sourceTree = "<group>"; };
-		2B8011482C3C502500EFF0DF /* japan1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = japan1.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 				2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */,
 				2B8011462C3ACD2400EFF0DF /* GPT.swift */,
 				2B80111A2C3ACAE100EFF0DF /* ContentView.swift */,
-				2B8011482C3C502500EFF0DF /* japan1.jpeg */,
+				2B7924C12C3D6CD5004CCE54 /* abc.swift */,
 				2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */,
 				2B80111E2C3ACAE100EFF0DF /* SmartExpenceTracker.entitlements */,
 				2B80111F2C3ACAE100EFF0DF /* Preview Content */,
@@ -141,7 +141,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B8011492C3C502500EFF0DF /* japan1.jpeg in Resources */,
 				2B8011212C3ACAE100EFF0DF /* Preview Assets.xcassets in Resources */,
 				2B80111D2C3ACAE100EFF0DF /* Assets.xcassets in Resources */,
 			);
@@ -156,6 +155,7 @@
 			files = (
 				2B80111B2C3ACAE100EFF0DF /* ContentView.swift in Sources */,
 				2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */,
+				2B7924C22C3D6CD5004CCE54 /* abc.swift in Sources */,
 				2B8011472C3ACD2400EFF0DF /* GPT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
