@@ -48,7 +48,7 @@ struct ContentView: View {
                         }
                 }
             })
-            .photosPicker(isPresented: $photopicker, selection: $selectedImageItem)
+            .photosPicker(isPresented: $photopicker, selection: $selectedImageItem, matching: .images)
         }
     }
 }
@@ -84,7 +84,7 @@ struct PhotosSavingView: View {
                         Spacer()
                         image
                             .resizable()
-                            .scaledToFit()
+                            .scaledToFill()
                         Spacer()
                     }
                     
