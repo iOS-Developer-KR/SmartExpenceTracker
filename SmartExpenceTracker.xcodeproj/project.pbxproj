@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5E37182C3E92460013E5FA /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E37172C3E92460013E5FA /* DateFunctions.swift */; };
 		2B7924C22C3D6CD5004CCE54 /* abc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7924C12C3D6CD5004CCE54 /* abc.swift */; };
 		2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */; };
 		2B80111B2C3ACAE100EFF0DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B80111A2C3ACAE100EFF0DF /* ContentView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B5E37172C3E92460013E5FA /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
 		2B7924C12C3D6CD5004CCE54 /* abc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abc.swift; sourceTree = "<group>"; };
 		2B8011152C3ACAE100EFF0DF /* SmartExpenceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartExpenceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartExpenceTrackerApp.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				2BB285972C3E19A300B4CC09 /* AnalyzingPhotoView.swift */,
 				2BB285992C3E3B6B00B4CC09 /* SavingExpenceView.swift */,
 				2BB285952C3E162800B4CC09 /* Extension+View.swift */,
+				2B5E37172C3E92460013E5FA /* DateFunctions.swift */,
 				2B7924C12C3D6CD5004CCE54 /* abc.swift */,
 				2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */,
 				2B80111E2C3ACAE100EFF0DF /* SmartExpenceTracker.entitlements */,
@@ -167,6 +170,7 @@
 				2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */,
 				2BB285962C3E162800B4CC09 /* Extension+View.swift in Sources */,
 				2B7924C22C3D6CD5004CCE54 /* abc.swift in Sources */,
+				2B5E37182C3E92460013E5FA /* DateFunctions.swift in Sources */,
 				2B8011472C3ACD2400EFF0DF /* GPT.swift in Sources */,
 				2BB285982C3E19A300B4CC09 /* AnalyzingPhotoView.swift in Sources */,
 			);

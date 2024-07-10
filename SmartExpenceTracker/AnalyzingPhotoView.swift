@@ -51,6 +51,7 @@ struct AnalyzingPhotoView: View {
                                 isOffset.toggle()
                             }
                         }
+                        .opacity(gpt.navigate ? 0.0 : 1.0)
                 })
                 
             }
@@ -76,10 +77,17 @@ struct AnalyzingPhotoView: View {
                 })
             }
         }
-        .navigationDestination(isPresented: $gpt.navigate) {
+        .sheet(isPresented: $gpt.navigate, content: {
             SavingExpenceView()
-        }
-        
+                .presentationBackground(.thinMaterial)
+                .opacity(0.8)
+                .presentationDetents([.medium])
+                .interactiveDismissDisabled()
+                    
+        })
+//        .navigationDestination(isPresented: $gpt.navigate) {
+//            SavingExpenceView()
+//        }
     }
 }
 

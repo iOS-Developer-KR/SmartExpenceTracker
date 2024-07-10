@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("흠")
+                Text("")
             }
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
@@ -43,7 +43,7 @@ struct ContentView: View {
                 if let selectedImageItem = selectedImageItem {
                     AnalyzingPhotoView(selectedImageItem: selectedImageItem)
                         .onAppear {
-                            //                            self.selectedImageItem = .none
+                            self.selectedImageItem = .none
                         }
                 }
             })
