@@ -9,11 +9,11 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 
 struct AnalyzingPhotoView: View {
-//    @State private var selectedImageData: Data?
-//    @State private var opc: Double = 0.3
+    @EnvironmentObject var gpt: GPT
     @State private var isOpacity: Bool = false
     @State private var isOffset: Bool = false
     @State private var image: Image?
+    @State private var received: Bool = false
     var selectedImageItem: PhotosPickerItem
     
     
@@ -55,31 +55,39 @@ struct AnalyzingPhotoView: View {
                 
             }
         }
-        
-        
         .onAppear {
-            selectedImageItem.loadTransferable(type: Data.self, completionHandler: { result in
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                selectedImageItem.loadTransferable(type: Data.self, completionHandler: { result in
                     guard selectedImageItem == self.selectedImageItem else { return }
                     switch result {
                     case .success(let image?):
-                        var selectedImageData = image
-                        var data = selectedImageData
-                        guard let uiImage = UIImage(data: data) else { return }
+                        if let image = UIImage(data: image), let imageData = image.jpegData(compressionQuality: 1.0) {
+                            print("before analysing")
+                            gpt.analyze(imageData: imageData, value: $received)
+                            print("after analysing")
+                        }
+                        guard let uiImage = UIImage(data: image) else { return }
                         self.image = Image(uiImage: uiImage)
                     case .success(nil): break
                     case .failure(let failure):
                         print(failure.localizedDescription)
                         return
                     }
-                }
-            })
+                })
+            }
+        }
+        .navigationDestination(isPresented: $gpt.navigate) {
+            SavingExpenceView()
         }
         
     }
 }
 
 
+
+
 #Preview {
     AnalyzingPhotoView(selectedImageItem: PhotosPickerItem(itemIdentifier: ""))
+        .environmentObject(GPT())
 }
+

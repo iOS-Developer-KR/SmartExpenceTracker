@@ -9,7 +9,6 @@ import SwiftUI
 import PhotosUI
 
 struct ContentView: View {
-    @Environment(GPT.self) var gpt
     @State private var selectedImageItem: PhotosPickerItem?
     @State private var showDialog: Bool = false
     @State private var photopicker: Bool = false
@@ -55,5 +54,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environment(GPT())
 }

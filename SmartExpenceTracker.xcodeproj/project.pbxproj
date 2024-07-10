@@ -16,6 +16,7 @@
 		2B8011472C3ACD2400EFF0DF /* GPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8011462C3ACD2400EFF0DF /* GPT.swift */; };
 		2BB285962C3E162800B4CC09 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB285952C3E162800B4CC09 /* Extension+View.swift */; };
 		2BB285982C3E19A300B4CC09 /* AnalyzingPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB285972C3E19A300B4CC09 /* AnalyzingPhotoView.swift */; };
+		2BB2859A2C3E3B6B00B4CC09 /* SavingExpenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB285992C3E3B6B00B4CC09 /* SavingExpenceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		2B8011462C3ACD2400EFF0DF /* GPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT.swift; sourceTree = "<group>"; };
 		2BB285952C3E162800B4CC09 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
 		2BB285972C3E19A300B4CC09 /* AnalyzingPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzingPhotoView.swift; sourceTree = "<group>"; };
+		2BB285992C3E3B6B00B4CC09 /* SavingExpenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingExpenceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				2B8011462C3ACD2400EFF0DF /* GPT.swift */,
 				2B80111A2C3ACAE100EFF0DF /* ContentView.swift */,
 				2BB285972C3E19A300B4CC09 /* AnalyzingPhotoView.swift */,
+				2BB285992C3E3B6B00B4CC09 /* SavingExpenceView.swift */,
 				2BB285952C3E162800B4CC09 /* Extension+View.swift */,
 				2B7924C12C3D6CD5004CCE54 /* abc.swift */,
 				2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BB2859A2C3E3B6B00B4CC09 /* SavingExpenceView.swift in Sources */,
 				2B80111B2C3ACAE100EFF0DF /* ContentView.swift in Sources */,
 				2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */,
 				2BB285962C3E162800B4CC09 /* Extension+View.swift in Sources */,

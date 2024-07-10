@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct SmartExpenceTrackerApp: App {
 
+    @State var gpt = GPT()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(GPT())
+                .environmentObject(gpt)
         }
     }
 }
