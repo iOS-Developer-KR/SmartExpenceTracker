@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 extension UIWindow {
     static var current: UIWindow? {
@@ -24,5 +25,14 @@ extension UIWindow {
 extension UIScreen {
     static var current: UIScreen? {
         UIWindow.current?.screen
+    }
+}
+
+extension View {
+    func SpacedText(_ value: String) -> some View {
+        HStack {
+            Text(value)
+            Spacer()
+        }
     }
 }
