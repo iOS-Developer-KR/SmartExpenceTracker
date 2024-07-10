@@ -44,6 +44,23 @@ struct SavingExpenceView: View {
             
             Divider()
             
+            List(gpt.marchants) { mar in
+                VStack {
+                    HStack {
+                        Text("name")
+                        Spacer()
+                        Text(mar.object)
+                    }
+                    HStack {
+                        Text("price")
+                        Spacer()
+                        Text("\(mar.price)")
+                    }
+                }
+            }
+            
+            Divider()
+            
             HStack {
                 Text("amount")
                 Spacer()
