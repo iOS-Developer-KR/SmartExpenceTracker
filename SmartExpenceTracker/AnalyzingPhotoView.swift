@@ -85,10 +85,6 @@ struct AnalyzingPhotoView: View {
                 .opacity(0.8)
                 .interactiveDismissDisabled()
         }
-//        .navigationDestination(isPresented: $gpt.navigate) {
-//            
-//        }
-        
     }
 }
 
