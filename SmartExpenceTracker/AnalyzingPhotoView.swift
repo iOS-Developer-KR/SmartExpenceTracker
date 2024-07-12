@@ -31,26 +31,29 @@ struct AnalyzingPhotoView: View {
                     }
                     
                     
-                    Rectangle()
-                        .fill(Color.green)
-                        .frame(width: 400, height: 5)
-                        .opacity(isOpacity ? 0.3 : 0.8)
-                        .offset(y: isOffset ? -20 : (UIScreen.current?.bounds.height)! - 100)
-                        .overlay(
-                            Rectangle()
-                                .fill(Color.green)
-                                .frame(width: 400, height: 50)
-                                .opacity(isOpacity ? 0.3 : 0.8)
-                                .offset(y: isOffset ? 0 : (UIScreen.current?.bounds.height)! - 120)
-                        )
-                        .onAppear {
-                            withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
-                                isOpacity.toggle()
+                    if !gpt.navigate {
+                        Rectangle()
+                            .fill(Color.green)
+                            .frame(width: 400, height: 5)
+                            .opacity(isOpacity ? 0.3 : 0.8)
+                            .offset(y: isOffset ? -20 : (UIScreen.current?.bounds.height)! - 100)
+                            .overlay(
+                                Rectangle()
+                                    .fill(Color.green)
+                                    .frame(width: 400, height: 50)
+                                    .opacity(isOpacity ? 0.3 : 0.8)
+                                    .offset(y: isOffset ? 0 : (UIScreen.current?.bounds.height)! - 120)
+                            )
+                            .onAppear {
+                                withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+                                    isOpacity.toggle()
+                                }
+                                withAnimation(Animation.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
+                                    isOffset.toggle()
+                                }
                             }
-                            withAnimation(Animation.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
-                                isOffset.toggle()
-                            }
-                        }
+                    }
+                        
                 })
                 
             }
@@ -76,10 +79,12 @@ struct AnalyzingPhotoView: View {
                 })
             }
         }
-        .navigationDestination(isPresented: $gpt.navigate) {
+        .sheet(isPresented: $gpt.navigate) {
             SavingExpenceView()
+                .presentationDetents([.medium, .fraction(0.2), .large])
+                .opacity(0.8)
+                .interactiveDismissDisabled()
         }
-        
     }
 }
 
