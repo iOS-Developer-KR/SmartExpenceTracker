@@ -49,7 +49,7 @@ class GPT: ObservableObject {
     @Published var result: Receipts = Receipts(title: "no value", amount: 0, category: "no value", date: "no value")
     @Published var marchants: [Marchandize] = []
     @Published var navigate: Bool = false
-    var openAI = OpenAI(apiToken: "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")
+    var openAI = OpenAI(apiToken: "api_key")
     var cancellables = Set<AnyCancellable>()
     
     init() {
