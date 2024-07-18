@@ -59,31 +59,47 @@ struct AnalyzingPhotoView: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.async {
-                selectedImageItem.loadTransferable(type: Data.self, completionHandler: { result in
-                    guard selectedImageItem == self.selectedImageItem else { return }
-                    switch result {
-                    case .success(let image?):
-                        if let image = UIImage(data: image), let imageData = image.jpegData(compressionQuality: 1.0) {
-                            print("before analysing")
-                            gpt.analyze(imageData: imageData, value: $received)
-                            print("after analysing")
-                        }
-                        guard let uiImage = UIImage(data: image) else { return }
-                        self.image = Image(uiImage: uiImage)
-                    case .success(nil): break
-                    case .failure(let failure):
-                        print(failure.localizedDescription)
-                        return
-                    }
-                })
-            }
+            analyze()
         }
         .sheet(isPresented: $gpt.navigate) {
             SavingExpenceView()
                 .presentationDetents([.medium, .fraction(0.2), .large])
-                .opacity(0.8)
+                .presentationBackgroundInteraction(.enabled(upThrough: .medium))
                 .interactiveDismissDisabled()
+                .opacity(0.8)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    analyze()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
+        }
+    }
+}
+
+extension AnalyzingPhotoView {
+    func analyze() {
+        DispatchQueue.main.async {
+            selectedImageItem.loadTransferable(type: Data.self, completionHandler: { result in
+                guard selectedImageItem == self.selectedImageItem else { return }
+                switch result {
+                case .success(let image?):
+                    if let image = UIImage(data: image), let imageData = image.jpegData(compressionQuality: 1.0) {
+                        print("before analysing")
+                        gpt.analyze(imageData: imageData, value: $received)
+                        print("after analysing")
+                    }
+                    guard let uiImage = UIImage(data: image) else { return }
+                    self.image = Image(uiImage: uiImage)
+                case .success(nil): break
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                    return
+                }
+            })
         }
     }
 }

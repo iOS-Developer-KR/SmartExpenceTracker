@@ -49,7 +49,7 @@ class GPT: ObservableObject {
     @Published var result: Receipts = Receipts(title: "no value", amount: 0, category: "no value", date: "no value")
     @Published var marchants: [Marchandize] = []
     @Published var navigate: Bool = false
-    var openAI = OpenAI(apiToken: "api_key")
+    var openAI = OpenAI(apiToken: "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")
     var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -59,12 +59,16 @@ class GPT: ObservableObject {
     }
     
     func reset() {
-        result = .init(title: "", amount: 0, category: "", date: "")
-        marchants = []
+        DispatchQueue.main.async {
+            self.result = .init(title: "", amount: 0, category: "", date: "")
+            self.marchants = []
+            self.navigate = false
+        }
     }
     
     @MainActor
     func analyze(imageData: Data, value: Binding<Bool>) {
+        reset()
         let functions = [
             ChatQuery.ChatCompletionToolParam(function: .init(
                 name: "Analysing-Given-Reciepts",
@@ -144,14 +148,15 @@ class GPT: ObservableObject {
         }
     }
     
-    @MainActor
     func addSubscriber() {
         $result
             .sink { [weak self] receipts in
-                if receipts.amount == 0 {
-                    self?.navigate = false
-                } else {
-                    self?.navigate = true
+                DispatchQueue.main.async {
+                    if receipts.amount == 0 {
+                        self?.navigate = false
+                    } else {
+                        self?.navigate = true
+                    }
                 }
             }
             .store(in: &cancellables)
