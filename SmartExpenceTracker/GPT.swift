@@ -67,7 +67,7 @@ class GPT: ObservableObject {
     }
     
     @MainActor
-    func analyze(imageData: Data, value: Binding<Bool>) {
+    func analyze(imageData: Data) {//, value: Binding<Bool>) {
         reset()
         let functions = [
             ChatQuery.ChatCompletionToolParam(function: .init(

@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 
-struct accessCameraView: UIViewControllerRepresentable {
-    
+struct AccessCameraView: UIViewControllerRepresentable {
+
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var isPresented
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = false
         imagePicker.delegate = context.coordinator
         return imagePicker
     }
@@ -33,9 +33,9 @@ struct accessCameraView: UIViewControllerRepresentable {
 
 // Coordinator will help to preview the selected image in the View.
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    var picker: accessCameraView
+    var picker: AccessCameraView
     
-    init(picker: accessCameraView) {
+    init(picker: AccessCameraView) {
         self.picker = picker
     }
     
