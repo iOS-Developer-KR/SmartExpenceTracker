@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct SmartExpenceTrackerApp: App {
 
-    @State var gpt = GPT()
+    @State var gpt = AnalyzingGPT()
     
     var body: some Scene {
         WindowGroup {

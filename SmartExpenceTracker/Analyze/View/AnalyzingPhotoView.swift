@@ -9,7 +9,7 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 
 struct AnalyzingPhotoView: View {
-    @EnvironmentObject var gpt: GPT
+    @EnvironmentObject var gpt: AnalyzingGPT
     @State private var isOpacity: Bool = false
     @State private var isOffset: Bool = false
     @State private var image: Image?
@@ -20,13 +20,12 @@ struct AnalyzingPhotoView: View {
     var body: some View {
         
         ZStack {
-//            if let image = self.image {
                 GeometryReader(content: { geometry in
                     VStack {
                         Spacer()
                         Image(uiImage: selectedImage)
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
                         Spacer()
                     }
                     
@@ -55,8 +54,6 @@ struct AnalyzingPhotoView: View {
                     }
                         
                 })
-                
-//            }
         }
         .onAppear {
             analyze()
@@ -84,36 +81,17 @@ extension AnalyzingPhotoView {
     func analyze() {
         DispatchQueue.main.async {
             if let imageData = selectedImage.jpegData(compressionQuality: 1.0) {
-                gpt.analyze(imageData: imageData)//, value: <#T##Binding<Bool>#>)
+                gpt.analyze(imageData: imageData)
             }
         }
-//        DispatchQueue.main.async {
-//            selectedImageItem.loadTransferable(type: Data.self, completionHandler: { result in
-//                guard selectedImageItem == self.selectedImageItem else { return }
-//                switch result {
-//                case .success(let image?):
-//                    if let image = UIImage(data: image), let imageData = image.jpegData(compressionQuality: 1.0) {
-//                        print("before analysing")
-//                        gpt.analyze(imageData: imageData, value: $received)
-//                        print("after analysing")
-//                    }
-//                    guard let uiImage = UIImage(data: image) else { return }
-//                    self.image = Image(uiImage: uiImage)
-//                case .success(nil): break
-//                case .failure(let failure):
-//                    print(failure.localizedDescription)
-//                    return
-//                }
-//            })
-//        }
     }
 }
 
 
 
 
-//#Preview {
-//    AnalyzingPhotoView(selectedImageItem: PhotosPickerItem(itemIdentifier: ""))
-//        .environmentObject(GPT())
-//}
+#Preview {
+    AnalyzingPhotoView(selectedImage: .japan1)
+        .environmentObject(AnalyzingGPT())
+}
 

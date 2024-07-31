@@ -9,10 +9,21 @@ import SwiftUI
 
 struct SavingExpenceView: View {
     
-    @EnvironmentObject var gpt: GPT
+    @EnvironmentObject var gpt: AnalyzingGPT
     
     var body: some View {
         VStack {
+            
+            HStack {
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Text("Save")
+                        .padding()
+                }
+            }
             
             Divider()
             
@@ -78,7 +89,7 @@ struct SavingExpenceView: View {
 
 #Preview {
     SavingExpenceView()
-        .environmentObject(GPT())
+        .environmentObject(AnalyzingGPT())
 }
 
 
