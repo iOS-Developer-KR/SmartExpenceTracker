@@ -34,7 +34,7 @@ class AnalyzingGPT: ObservableObject {
     }
     
     @MainActor
-    func analyze(imageData: Data) {//, value: Binding<Bool>) {
+    func analyze(imageData: Data) {
         reset()
         let functions = [
             ChatQuery.ChatCompletionToolParam(function: .init(
@@ -69,7 +69,7 @@ class AnalyzingGPT: ObservableObject {
              )
         ]
         
-        print("analysing2")
+        
         let imageParam = ChatQuery.ChatCompletionMessageParam.ChatCompletionUserMessageParam.init(
             content:
                 .vision([
@@ -99,14 +99,8 @@ class AnalyzingGPT: ObservableObject {
                                 
                             }
                         }
-                        
-                        
                     }
-                    
-                    //marchants
-
                 }
-                print("")
             } catch {
                 print(error.localizedDescription)
             }
