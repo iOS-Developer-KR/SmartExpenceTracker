@@ -16,7 +16,7 @@ class AnalyzingGPT: ObservableObject {
     @Published var result: Receipts = Receipts(title: "no value", amount: 0, category: Category.none, date: "no value")
     @Published var marchants: [Marchandize] = []
     @Published var navigate: Bool = false
-    var openAI = OpenAI(apiToken: "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")
+    var openAI = OpenAI(apiToken: "sk-zz4yHGCwdO-3nIQSa5Q_YbM-RPhHuIuJ1ouzVUqN-qT3BlbkFJF91EyYcFGV4vgEmYib2C9vIxHxMFFgfDIFpESrTjgA")
     var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -69,6 +69,8 @@ class AnalyzingGPT: ObservableObject {
              )
         ]
         
+        print(imageData.description)
+        
         
         let imageParam = ChatQuery.ChatCompletionMessageParam.ChatCompletionUserMessageParam.init(
             content:
@@ -87,6 +89,7 @@ class AnalyzingGPT: ObservableObject {
 
                     if let toolcalls = chat.message.toolCalls, let arg = toolcalls.first?.function.arguments.data(using: .utf8) {
                         DispatchQueue.main.async { [self] in
+                            print(arg)
                             self.result = try! JSONDecoder().decode(Receipts.self, from: arg)
                             print("해독한 json" + self.result.category.displayName + self.result.date + result.title)
                             

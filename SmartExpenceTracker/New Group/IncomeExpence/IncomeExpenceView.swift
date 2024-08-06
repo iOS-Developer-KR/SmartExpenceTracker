@@ -10,11 +10,11 @@ import PhotosUI
 
 struct IncomeExpenceView: View {
     @State private var selectedImageItem: PhotosPickerItem?
-    @State private var selectedImage: UIImage?
     @State private var showDialog = false
     @State private var photoPicker = false
     @State private var captureImage = false
     @State private var analyzeImage = false
+    @State var selectedImage: UIImage?
     
     var body: some View {
         NavigationStack {
@@ -28,6 +28,8 @@ struct IncomeExpenceView: View {
                         
                         Text("원")
                         Spacer()
+                        
+
                     }.padding(.horizontal)
                     
                     
@@ -52,10 +54,8 @@ struct IncomeExpenceView: View {
             .fullScreenCover(isPresented: $captureImage) {
                 AccessCameraView(selectedImage: $selectedImage)
             }
-            .fullScreenCover(isPresented: $analyzeImage, content: {
-                if let image = selectedImage {
-                    AnalyzingPhotoView(selectedImage: image)
-                }
+            .navigationDestination(isPresented: $analyzeImage, destination: {
+                AnalyzingPhotoView(selectedImage: $selectedImage)
             })
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
@@ -71,8 +71,8 @@ struct IncomeExpenceView: View {
         item.loadTransferable(type: Data.self) { result in
             switch result {
             case .success(let data):
-                if let data = data {
-                    selectedImage = UIImage(data: data)
+                if let data = data, let image = UIImage(data: data) {
+                    selectedImage = image
                 }
             case .failure(let error):
                 print("Error loading image: \(error.localizedDescription)")
@@ -84,7 +84,7 @@ struct IncomeExpenceView: View {
 }
 
 #Preview {
-    IncomeExpenceView()
+    IncomeExpenceView(selectedImage: UIImage(named: "")!)
 }
 
 

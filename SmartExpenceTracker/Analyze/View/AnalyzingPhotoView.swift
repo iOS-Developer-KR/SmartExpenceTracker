@@ -12,9 +12,8 @@ struct AnalyzingPhotoView: View {
     @EnvironmentObject var gpt: AnalyzingGPT
     @State private var isOpacity: Bool = false
     @State private var isOffset: Bool = false
-    @State private var image: Image?
     @State private var received: Bool = false
-    var selectedImage: UIImage
+    @Binding var selectedImage: UIImage?
     
     
     var body: some View {
@@ -23,9 +22,11 @@ struct AnalyzingPhotoView: View {
                 GeometryReader(content: { geometry in
                     VStack {
                         Spacer()
-                        Image(uiImage: selectedImage)
-                            .resizable()
-                            .scaledToFit()
+                        if let image = selectedImage {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                        }
                         Spacer()
                     }
                     
@@ -79,11 +80,18 @@ struct AnalyzingPhotoView: View {
 
 extension AnalyzingPhotoView {
     func analyze() {
-        DispatchQueue.main.async {
-            if let imageData = selectedImage.jpegData(compressionQuality: 1.0) {
+//        DispatchQueue.main.async {
+            guard let image = selectedImage else { return }
+            if let imageData = image.jpegData(compressionQuality: 1.0) {
+            
                 gpt.analyze(imageData: imageData)
+                let bcf = ByteCountFormatter()
+                bcf.allowedUnits = [.useMB]
+                bcf.countStyle = .file
+                let string = bcf.string(fromByteCount: Int64(imageData.count))
+                print("formatted result: \(string)")
             }
-        }
+//        }
     }
 }
 
@@ -91,7 +99,7 @@ extension AnalyzingPhotoView {
 
 
 #Preview {
-    AnalyzingPhotoView(selectedImage: .japan1)
+    AnalyzingPhotoView(selectedImage: .constant(UIImage(named: "")!))
         .environmentObject(AnalyzingGPT())
 }
 
