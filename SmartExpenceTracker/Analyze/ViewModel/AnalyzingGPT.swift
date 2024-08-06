@@ -46,7 +46,7 @@ class AnalyzingGPT: ObservableObject {
                             properties: [
                                 "title": .init(type: .string, description: "Set the simple title of this reciepts"),
                                 "amount": .init(type: .integer, description: "total payment. If you're not sure, just use USD as default value"),
-                                "category": .init(type: .string, description: "the category of expense. Set category based on the title of expense"),
+                                "category": .init(type: .string, description: "the category of expense. Set category based on the title of expense", enum: Category.allCases.map { $0.rawValue }),
                                 "date": .init(type: .string, description: "Date of expense. Set date using of this reciepts information, the date must be formatted yyy-MM-dd")
                             ],
                             required: ["title", "amount", "category"]

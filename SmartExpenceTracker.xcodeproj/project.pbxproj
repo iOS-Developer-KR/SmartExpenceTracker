@@ -22,6 +22,7 @@
 		2BB2859A2C3E3B6B00B4CC09 /* SavingExpenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB285992C3E3B6B00B4CC09 /* SavingExpenceView.swift */; };
 		2BB6B19F2C5E30030096A745 /* DateSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B19E2C5E30030096A745 /* DateSelectView.swift */; };
 		2BB6B1A12C5E320A0096A745 /* IncomeExpenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */; };
+		2BB6B1C52C624FB60096A745 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B1C42C624FB60096A745 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		2BB285992C3E3B6B00B4CC09 /* SavingExpenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingExpenceView.swift; sourceTree = "<group>"; };
 		2BB6B19E2C5E30030096A745 /* DateSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectView.swift; sourceTree = "<group>"; };
 		2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeExpenceView.swift; sourceTree = "<group>"; };
+		2BB6B1C42C624FB60096A745 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			children = (
 				2B64B19A2C5A2FDF00F7A74B /* Receipts.swift */,
 				2B64B19C2C5A2FF200F7A74B /* Marchandize.swift */,
+				2BB6B1C42C624FB60096A745 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				2B8011472C3ACD2400EFF0DF /* AnalyzingGPT.swift in Sources */,
 				2B64B19B2C5A2FDF00F7A74B /* Receipts.swift in Sources */,
 				2BB285982C3E19A300B4CC09 /* AnalyzingPhotoView.swift in Sources */,
+				2BB6B1C52C624FB60096A745 /* Category.swift in Sources */,
 				2BB6B19F2C5E30030096A745 /* DateSelectView.swift in Sources */,
 				2B64B18E2C57C89B00F7A74B /* AccessCameraView.swift in Sources */,
 				2B64B19D2C5A2FF200F7A74B /* Marchandize.swift in Sources */,
