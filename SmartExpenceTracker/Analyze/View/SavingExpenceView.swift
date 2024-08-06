@@ -40,7 +40,7 @@ struct SavingExpenceView: View {
             HStack {
                 Text("category")
                 Spacer()
-                Text(gpt.result.category)
+                Text(gpt.result.category.displayName)
             }
             .padding()
             

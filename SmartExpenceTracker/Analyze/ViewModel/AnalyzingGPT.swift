@@ -13,7 +13,7 @@ import Combine
 
 class AnalyzingGPT: ObservableObject {
     
-    @Published var result: Receipts = Receipts(title: "no value", amount: 0, category: "no value", date: "no value")
+    @Published var result: Receipts = Receipts(title: "no value", amount: 0, category: Category.none, date: "no value")
     @Published var marchants: [Marchandize] = []
     @Published var navigate: Bool = false
     var openAI = OpenAI(apiToken: "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")
@@ -27,7 +27,7 @@ class AnalyzingGPT: ObservableObject {
     
     func reset() {
         DispatchQueue.main.async {
-            self.result = .init(title: "", amount: 0, category: "", date: "")
+            self.result = .init(title: "", amount: 0, category: Category.none, date: "")
             self.marchants = []
             self.navigate = false
         }
@@ -79,7 +79,7 @@ class AnalyzingGPT: ObservableObject {
         
         Task {
             do {
-                let chatsStream = try await openAI.chats(query: ChatQuery(messages: [.user(imageParam)], model: .gpt4_o, tools: functions))
+                let chatsStream = try await self.openAI.chats(query: ChatQuery(messages: [.user(imageParam)], model: .gpt4_o, tools: functions))
                 for chat in chatsStream.choices {
                     for tool in chat.message.toolCalls! {
                         print(tool.function.arguments.description)
@@ -88,7 +88,7 @@ class AnalyzingGPT: ObservableObject {
                     if let toolcalls = chat.message.toolCalls, let arg = toolcalls.first?.function.arguments.data(using: .utf8) {
                         DispatchQueue.main.async { [self] in
                             self.result = try! JSONDecoder().decode(Receipts.self, from: arg)
-                            print("해독한 json" + self.result.category + self.result.date + result.title)
+                            print("해독한 json" + self.result.category.displayName + self.result.date + result.title)
                             
                             
                             for tool in toolcalls.dropFirst() {

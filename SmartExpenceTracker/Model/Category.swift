@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum Category: String, CaseIterable {
+enum Category: String, CaseIterable, Codable {
     case none = "카테고리 없음"
     case transfer = "이체"
     case shopping = "쇼핑"

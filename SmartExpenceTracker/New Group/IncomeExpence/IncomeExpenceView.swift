@@ -14,6 +14,7 @@ struct IncomeExpenceView: View {
     @State private var showDialog = false
     @State private var photoPicker = false
     @State private var captureImage = false
+    @State private var analyzeImage = false
     
     var body: some View {
         NavigationStack {
@@ -51,8 +52,16 @@ struct IncomeExpenceView: View {
             .fullScreenCover(isPresented: $captureImage) {
                 AccessCameraView(selectedImage: $selectedImage)
             }
+            .fullScreenCover(isPresented: $analyzeImage, content: {
+                if let image = selectedImage {
+                    AnalyzingPhotoView(selectedImage: image)
+                }
+            })
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
+            }
+            .onChange(of: selectedImage) { oldValue, newValue in
+                analyzeImage = true
             }
         }
     }

@@ -11,6 +11,6 @@ import Foundation
 struct Receipts: Codable {
     var title: String
     var amount: Int
-    var category: String
+    var category: Category
     var date: String
 }
