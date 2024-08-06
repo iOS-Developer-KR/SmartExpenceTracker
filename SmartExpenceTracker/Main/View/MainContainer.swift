@@ -10,8 +10,7 @@ import SwiftUI
 struct MainContainer: View {
     
     @State private var selectedTab = 1
-    @State private var offset: CGFloat = 0
-    @State private var dragging: Bool = false
+    @State private var verticalOffset: CGFloat = 0
     private let tabs: [String] = ["자산", "소비﹒수입", "연말정산"]
     
     var body: some View {
@@ -20,6 +19,7 @@ struct MainContainer: View {
                 ForEach(Array(tabs.enumerated()), id: \.offset) { obj in
                     Button {
                         selectedTab = obj.offset
+                        print(selectedTab)
                     } label: {
                         Text(obj.element)
                             .foregroundStyle(obj.offset == selectedTab ? Color.accentColor : Color.gray)
@@ -37,27 +37,28 @@ struct MainContainer: View {
                             .frame(width: geometry.size.width, height: geometry.size.height)
                     }
                 }
-                .offset(x: -CGFloat(selectedTab) * geometry.size.width + offset)
+                .offset(x: -CGFloat(selectedTab) * geometry.size.width + verticalOffset)
+                .onAppear {
+                    print(geometry.size.width)
+                }
                 .animation(.easeInOut, value: selectedTab)
+                .animation(.easeInOut, value: verticalOffset)
                 .gesture(
                     DragGesture()
                         .onChanged { value in
-                            dragging = true
-                            offset = value.translation.width
+                            verticalOffset = value.translation.width
                         }
                         .onEnded { value in
-                            dragging = false
                             let threshold = geometry.size.width / 2
                             if -value.predictedEndTranslation.width > threshold && selectedTab < tabs.count - 1 {
                                 selectedTab += 1
                             } else if value.predictedEndTranslation.width > threshold && selectedTab > 0 {
                                 selectedTab -= 1
                             }
-                            offset = 0
+                            verticalOffset = 0
                         }
                 )
             }
-            .edgesIgnoringSafeArea(.all)
         }
     }
     
@@ -67,7 +68,7 @@ struct MainContainer: View {
         case 0:
             Text("First View")
         case 1:
-            Text("Second View")
+            IncomeExpenceView()
         case 2:
             Text("Third View")
         default:

@@ -83,10 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				2B80111A2C3ACAE100EFF0DF /* MainContainer.swift */,
-				2BB6B19E2C5E30030096A745 /* DateSelectView.swift */,
-				2B64B18D2C57C89B00F7A74B /* AccessCameraView.swift */,
-				2B64B18F2C5A2ED600F7A74B /* CalendarView.swift */,
-				2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */,
+				2BB6B1C22C624B540096A745 /* IncomeExpence */,
+				2BB6B1C12C624B4A0096A745 /* AccessCamera */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,6 +153,7 @@
 			children = (
 				2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */,
 				2B64B1912C5A2EDB00F7A74B /* Main */,
+				2BB6B1C32C624B570096A745 /* New Group */,
 				2B64B1952C5A2F3000F7A74B /* Analyze */,
 				2B64B1992C5A2FD100F7A74B /* Model */,
 				2BB285952C3E162800B4CC09 /* Extension+View.swift */,
@@ -171,6 +170,33 @@
 				2B8011202C3ACAE100EFF0DF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2BB6B1C12C624B4A0096A745 /* AccessCamera */ = {
+			isa = PBXGroup;
+			children = (
+				2B64B18D2C57C89B00F7A74B /* AccessCameraView.swift */,
+			);
+			path = AccessCamera;
+			sourceTree = "<group>";
+		};
+		2BB6B1C22C624B540096A745 /* IncomeExpence */ = {
+			isa = PBXGroup;
+			children = (
+				2BB6B19E2C5E30030096A745 /* DateSelectView.swift */,
+				2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */,
+				2B64B18F2C5A2ED600F7A74B /* CalendarView.swift */,
+			);
+			name = IncomeExpence;
+			path = "../../New Group/IncomeExpence";
+			sourceTree = "<group>";
+		};
+		2BB6B1C32C624B570096A745 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			path = "New Group/New Group/New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

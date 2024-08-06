@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct MainTabView: View {
+struct IncomeExpenceView: View {
     @State private var selectedImageItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
     @State private var showDialog = false
@@ -21,21 +21,17 @@ struct MainTabView: View {
 
                 VStack {
                     
-                    
-                    
                     DateSelectView()
                     
-                    Spacer()
+                    HStack {
+                        
+                        Text("원")
+                        Spacer()
+                    }.padding(.horizontal)
                     
                     
-                    if let selectedImage = selectedImage {
-                        //                    Image(uiImage: selectedImage)
-                        //                        .resizable()
-                        //                        .scaledToFit()
-                    } else {
-                        Text("분석할 영수증을 선택하세요")
-                            .foregroundColor(.gray)
-                    }
+                    
+                    
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
@@ -74,8 +70,12 @@ struct MainTabView: View {
             }
         }
     }
+    
+    
 }
 
 #Preview {
-    MainTabView()
+    IncomeExpenceView()
 }
+
+
