@@ -1,29 +1,44 @@
 //
-//  CalendarView.swift
+//  ContentView.swift
 //  SmartExpenceTracker
 //
-//  Created by Taewon Yoon on 7/31/24.
+//  Created by Taewon Yoon on 7/7/24.
 //
 
 import SwiftUI
 
-struct CalendarView: View {
-    @State private var selectedTab = 0
+struct MainContainer: View {
+    
+    @State private var selectedTab = 1
     @State private var offset: CGFloat = 0
     @State private var dragging: Bool = false
+    private let tabs: [String] = ["자산", "소비﹒수입", "연말정산"]
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
+        VStack {
+            HStack {
+                ForEach(Array(tabs.enumerated()), id: \.offset) { obj in
+                    Button {
+                        selectedTab = obj.offset
+                    } label: {
+                        Text(obj.element)
+                            .foregroundStyle(obj.offset == selectedTab ? Color.accentColor : Color.gray)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            
+            Divider()
+            
+            GeometryReader { geometry in
                 HStack(spacing: 0) {
-                    ForEach(0..<3) { index in
+                    ForEach(0..<tabs.count, id: \.self) { index in
                         getViewFor(index: index)
                             .frame(width: geometry.size.width, height: geometry.size.height)
                     }
                 }
-                .frame(width: geometry.size.width * 3, height: geometry.size.height, alignment: .leading)
                 .offset(x: -CGFloat(selectedTab) * geometry.size.width + offset)
-                .animation(dragging ? .none : .easeInOut, value: selectedTab)
+                .animation(.easeInOut, value: selectedTab)
                 .gesture(
                     DragGesture()
                         .onChanged { value in
@@ -33,18 +48,17 @@ struct CalendarView: View {
                         .onEnded { value in
                             dragging = false
                             let threshold = geometry.size.width / 2
-                            if value.translation.width < -threshold && selectedTab < 2 {
+                            if -value.predictedEndTranslation.width > threshold && selectedTab < tabs.count - 1 {
                                 selectedTab += 1
-                            } else if value.translation.width > threshold && selectedTab > 0 {
+                            } else if value.predictedEndTranslation.width > threshold && selectedTab > 0 {
                                 selectedTab -= 1
                             }
                             offset = 0
                         }
                 )
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
+            .edgesIgnoringSafeArea(.all)
         }
-        .edgesIgnoringSafeArea(.all)
     }
     
     @ViewBuilder
@@ -52,13 +66,10 @@ struct CalendarView: View {
         switch index {
         case 0:
             Text("First View")
-                .background(Color.red)
         case 1:
             Text("Second View")
-                .background(Color.green)
         case 2:
             Text("Third View")
-                .background(Color.blue)
         default:
             EmptyView()
         }
@@ -66,5 +77,8 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView()
+    MainContainer()
 }
+
+
+

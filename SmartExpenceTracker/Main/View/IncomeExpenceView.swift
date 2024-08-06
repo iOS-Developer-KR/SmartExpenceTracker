@@ -1,14 +1,14 @@
 //
-//  ContentView.swift
+//  IncomeExpenceView.swift
 //  SmartExpenceTracker
 //
-//  Created by Taewon Yoon on 7/7/24.
+//  Created by Taewon Yoon on 8/3/24.
 //
 
 import SwiftUI
 import PhotosUI
 
-struct ContentView: View {
+struct MainTabView: View {
     @State private var selectedImageItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
     @State private var showDialog = false
@@ -17,25 +17,36 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                if let selectedImage = selectedImage {
-                    Image(uiImage: selectedImage)
-                        .resizable()
-                        .scaledToFit()
-                } else {
-                    Text("분석할 영수증을 선택하세요")
-                        .foregroundColor(.gray)
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    Button {
-                        showDialog.toggle()
-                    } label: {
-                        Image(systemName: "plus.circle")
+
+
+                VStack {
+                    
+                    
+                    
+                    DateSelectView()
+                    
+                    Spacer()
+                    
+                    
+                    if let selectedImage = selectedImage {
+                        //                    Image(uiImage: selectedImage)
+                        //                        .resizable()
+                        //                        .scaledToFit()
+                    } else {
+                        Text("분석할 영수증을 선택하세요")
+                            .foregroundColor(.gray)
                     }
                 }
-            }
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        Button {
+                            showDialog.toggle()
+                        } label: {
+                            Image(systemName: "plus.circle")
+                        }
+                    }
+                }
+            
             .confirmationDialog("Selection", isPresented: $showDialog) {
                 Button("사진찍기") { captureImage.toggle() }
                 Button("앨범 선택") { photoPicker.toggle() }
@@ -66,5 +77,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MainTabView()
 }
