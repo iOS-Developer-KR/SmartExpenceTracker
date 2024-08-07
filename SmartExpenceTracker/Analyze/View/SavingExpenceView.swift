@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SavingExpenceView: View {
     
-    @EnvironmentObject var gpt: AnalyzingGPT
+    @Environment(AnalyzingGPT.self) var gpt
     
     var body: some View {
         VStack {
@@ -89,7 +89,7 @@ struct SavingExpenceView: View {
 
 #Preview {
     SavingExpenceView()
-        .environmentObject(AnalyzingGPT())
+        .environment(AnalyzingGPT())
 }
 
 

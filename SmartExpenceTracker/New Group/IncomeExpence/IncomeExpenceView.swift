@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct IncomeExpenceView: View {
+    @Environment(AnalyzingGPT.self) var gpt
     @State private var selectedImageItem: PhotosPickerItem?
     @State private var showDialog = false
     @State private var photoPicker = false
@@ -17,6 +18,7 @@ struct IncomeExpenceView: View {
     @State var selectedImage: UIImage?
     
     var body: some View {
+        @Bindable var bindableGPT = gpt
         NavigationStack {
 
 
@@ -51,18 +53,24 @@ struct IncomeExpenceView: View {
                 Button("앨범 선택") { photoPicker.toggle() }
             }
             .photosPicker(isPresented: $photoPicker, selection: $selectedImageItem, matching: .images)
-            .fullScreenCover(isPresented: $captureImage) {
-                AccessCameraView(selectedImage: $selectedImage)
-            }
-            .navigationDestination(isPresented: $analyzeImage, destination: {
-                AnalyzingPhotoView(selectedImage: $selectedImage)
+            .navigationDestination(item: $selectedImage, destination: { _ in
+                AnalyzingPhotoView(selectedImage: $bindableGPT.selectedImage)
             })
+            .fullScreenCover(isPresented: $captureImage) {
+                AccessCameraView(isPresented: $bindableGPT.isShowingCamera, selectedImage: $bindableGPT.selectedImage)
+//                AccessCameraView(selectedImage: $selectedImage)
+            }
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
             }
-            .onChange(of: selectedImage) { oldValue, newValue in
-                analyzeImage = true
+            .onChange(of: gpt.selectedImage) { oldValue, newValue in
+                DispatchQueue.main.async {
+                    gpt.analyze()
+                }
             }
+//            .onChange(of: selectedImage) { oldValue, newValue in
+//                gpt.analyze(imageData: selectedImage!)
+//            }
         }
     }
     

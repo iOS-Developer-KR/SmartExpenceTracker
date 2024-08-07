@@ -10,15 +10,15 @@ import SwiftUI
 
 
 struct AccessCameraView: UIViewControllerRepresentable {
-
+//    @Environment(AnalyzingGPT.self) var gpt
+    @Binding var isPresented: Bool
     @Binding var selectedImage: UIImage?
-    @Environment(\.presentationMode) var isPresented
+    
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = false
         imagePicker.delegate = context.coordinator
+        imagePicker.sourceType = .camera
         return imagePicker
     }
     
@@ -27,22 +27,31 @@ struct AccessCameraView: UIViewControllerRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(picker: self)
+        return Coordinator(isPresented: $isPresented, selectedImage: $selectedImage)
     }
 }
 
 // Coordinator will help to preview the selected image in the View.
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    var picker: AccessCameraView
+    @Binding var isPresented: Bool
+    @Binding var selectedImage: UIImage?
     
-    init(picker: AccessCameraView) {
-        self.picker = picker
+    init(isPresented: Binding<Bool>, selectedImage: Binding<UIImage?>) {
+        _isPresented = isPresented
+        _selectedImage = selectedImage
     }
-    
+       
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[.originalImage] as? UIImage else { return }
         
-        self.picker.selectedImage = selectedImage
-        self.picker.isPresented.wrappedValue.dismiss()
+        DispatchQueue.main.async { [self] in
+            if let uiImage = info[.originalImage] as? UIImage {
+                selectedImage = uiImage
+            }
+            isPresented = false
+        }
     }
+    
 }
+/*
+ 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라마만세
+ */

@@ -15,7 +15,7 @@ struct SmartExpenceTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             MainContainer()
-                .environmentObject(gpt)
+                .environment(gpt)
         }
     }
 }
