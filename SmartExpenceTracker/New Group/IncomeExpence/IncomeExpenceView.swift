@@ -14,13 +14,10 @@ struct IncomeExpenceView: View {
     @State private var showDialog = false
     @State private var photoPicker = false
     @State private var captureImage = false
-    @State private var analyzeImage = false
-    @State var selectedImage: UIImage?
     
     var body: some View {
         @Bindable var bindableGPT = gpt
         NavigationStack {
-
 
                 VStack {
                     
@@ -30,12 +27,8 @@ struct IncomeExpenceView: View {
                         
                         Text("원")
                         Spacer()
-                        
 
                     }.padding(.horizontal)
-                    
-                    
-                    
                     
                 }
                 .toolbar {
@@ -53,12 +46,11 @@ struct IncomeExpenceView: View {
                 Button("앨범 선택") { photoPicker.toggle() }
             }
             .photosPicker(isPresented: $photoPicker, selection: $selectedImageItem, matching: .images)
-            .navigationDestination(item: $selectedImage, destination: { _ in
+            .navigationDestination(item: $bindableGPT.selectedImage, destination: { _ in
                 AnalyzingPhotoView(selectedImage: $bindableGPT.selectedImage)
             })
             .fullScreenCover(isPresented: $captureImage) {
                 AccessCameraView(isPresented: $bindableGPT.isShowingCamera, selectedImage: $bindableGPT.selectedImage)
-//                AccessCameraView(selectedImage: $selectedImage)
             }
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
@@ -68,9 +60,7 @@ struct IncomeExpenceView: View {
                     gpt.analyze()
                 }
             }
-//            .onChange(of: selectedImage) { oldValue, newValue in
-//                gpt.analyze(imageData: selectedImage!)
-//            }
+
         }
     }
     
@@ -80,7 +70,7 @@ struct IncomeExpenceView: View {
             switch result {
             case .success(let data):
                 if let data = data, let image = UIImage(data: data) {
-                    selectedImage = image
+                    gpt.selectedImage = image
                 }
             case .failure(let error):
                 print("Error loading image: \(error.localizedDescription)")
@@ -92,7 +82,7 @@ struct IncomeExpenceView: View {
 }
 
 #Preview {
-    IncomeExpenceView(selectedImage: UIImage(named: "")!)
+    IncomeExpenceView()
 }
 
 
