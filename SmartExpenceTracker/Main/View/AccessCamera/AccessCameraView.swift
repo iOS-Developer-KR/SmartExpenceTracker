@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct AccessCameraView: UIViewControllerRepresentable {
-//    @Environment(AnalyzingGPT.self) var gpt
+
     @Binding var isPresented: Bool
     @Binding var selectedImage: UIImage?
     
@@ -31,7 +31,6 @@ struct AccessCameraView: UIViewControllerRepresentable {
     }
 }
 
-// Coordinator will help to preview the selected image in the View.
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @Binding var isPresented: Bool
     @Binding var selectedImage: UIImage?
@@ -43,15 +42,11 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
        
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        DispatchQueue.main.async { [self] in
-            if let uiImage = info[.originalImage] as? UIImage {
-                selectedImage = uiImage
-            }
-            isPresented = false
+        if let uiImage = info[.originalImage] as? UIImage {
+            selectedImage = uiImage
         }
+        isPresented = false
+        
     }
     
 }
-/*
- 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라마만세
- */

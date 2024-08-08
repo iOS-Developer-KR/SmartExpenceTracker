@@ -149,7 +149,7 @@ class AnalyzingGPT {
         print("formatted result: \(string)")
         
         let imageData: Data
-        imageData = (selectedImage?.scaleToFit(targetSize: CGSize(width: 512, height: 512)).scaledJPGData(compressionQuality: 0.5))!
+        imageData = (selectedImage?.scaleToFit().scaledJPGData())!
         
         
         let imageParam = ChatQuery.ChatCompletionMessageParam.ChatCompletionUserMessageParam.init(
@@ -224,16 +224,9 @@ extension UIImage {
     }
     
     func scaledJPGData(compressionQuality: CGFloat = 0.5) -> Data {
-        #if os(visionOS)
-        let targetSize = CGSize(
-            width: size.width / UITraitCollection.current.displayScale,
-            height: size.height / UITraitCollection.current.displayScale)
-        #else
         let targetSize = CGSize(
             width: size.width / UIScreen.main.scale,
             height: size.height / UIScreen.main.scale)
-        #endif
-        
         
         let renderer = UIGraphicsImageRenderer(size: targetSize)
         let resized = renderer.image { _ in

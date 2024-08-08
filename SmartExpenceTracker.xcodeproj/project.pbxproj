@@ -23,6 +23,7 @@
 		2BB6B19F2C5E30030096A745 /* DateSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B19E2C5E30030096A745 /* DateSelectView.swift */; };
 		2BB6B1A12C5E320A0096A745 /* IncomeExpenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */; };
 		2BB6B1C52C624FB60096A745 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B1C42C624FB60096A745 /* Category.swift */; };
+		2BF3E4602C64EEC7008298EC /* YTWSwiftUILibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF3E45F2C64EEC7008298EC /* YTWSwiftUILibrary */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B8011452C3ACCF800EFF0DF /* OpenAI in Frameworks */,
+				2BF3E4602C64EEC7008298EC /* YTWSwiftUILibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +158,6 @@
 			children = (
 				2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */,
 				2B64B1912C5A2EDB00F7A74B /* Main */,
-				2BB6B1C32C624B570096A745 /* New Group */,
 				2B64B1952C5A2F3000F7A74B /* Analyze */,
 				2B64B1992C5A2FD100F7A74B /* Model */,
 				2BB285952C3E162800B4CC09 /* Extension+View.swift */,
@@ -194,14 +195,6 @@
 			path = "../../New Group/IncomeExpence";
 			sourceTree = "<group>";
 		};
-		2BB6B1C32C624B570096A745 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			path = "New Group/New Group/New Group";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,6 +213,7 @@
 			name = SmartExpenceTracker;
 			packageProductDependencies = (
 				2B8011442C3ACCF800EFF0DF /* OpenAI */,
+				2BF3E45F2C64EEC7008298EC /* YTWSwiftUILibrary */,
 			);
 			productName = SmartExpenceTracker;
 			productReference = 2B8011152C3ACAE100EFF0DF /* SmartExpenceTracker.app */;
@@ -251,6 +245,7 @@
 			mainGroup = 2B80110C2C3ACAE100EFF0DF;
 			packageReferences = (
 				2B8011432C3ACCF800EFF0DF /* XCRemoteSwiftPackageReference "OpenAI" */,
+				2BF3E45E2C64EEC7008298EC /* XCRemoteSwiftPackageReference "YTWSwiftUILibrary" */,
 			);
 			productRefGroup = 2B8011162C3ACAE100EFF0DF /* Products */;
 			projectDirPath = "";
@@ -521,6 +516,14 @@
 				minimumVersion = 0.2.9;
 			};
 		};
+		2BF3E45E2C64EEC7008298EC /* XCRemoteSwiftPackageReference "YTWSwiftUILibrary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iOS-Developer-KR/YTWSwiftUILibrary.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -528,6 +531,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B8011432C3ACCF800EFF0DF /* XCRemoteSwiftPackageReference "OpenAI" */;
 			productName = OpenAI;
+		};
+		2BF3E45F2C64EEC7008298EC /* YTWSwiftUILibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BF3E45E2C64EEC7008298EC /* XCRemoteSwiftPackageReference "YTWSwiftUILibrary" */;
+			productName = YTWSwiftUILibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
