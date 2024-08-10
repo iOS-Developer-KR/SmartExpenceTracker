@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI",
       "state" : {
-        "revision" : "fd13a41e987004d14f1793c570721953a2767b03",
-        "version" : "0.2.9"
+        "revision" : "843e087929aa806adb611dbca93f9a4a7f28be04",
+        "version" : "0.3.0"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/iOS-Developer-KR/YTWSwiftUILibrary.git",
       "state" : {
         "branch" : "main",
-        "revision" : "b342342ccbd918cb039665069b86675bc8bb521d"
+        "revision" : "878f3cf6f4c8c7699fca5ebfd46c0b63a2f5d326"
       }
     }
   ],

@@ -10,16 +10,16 @@ import YTWSwiftUILibrary
 
 struct MainContainer: View {
     
-    @State private var selectedTab = 1
-    @State private var verticalOffset: CGFloat = 0
-    private let tabs: [String] = ["자산", "소비﹒수입", "연말정산"]
+    let textComponent: TextComponent = TextComponent(tabs: ["자산", "소비﹒수입", "연말정산"])
+    let underline: UnderLineComponent = UnderLineComponent(visible: true, color: Color.black, thickness: 1.0)
     
     var body: some View {
+        
         TopTabBar(content: {
             Text("First View")
             IncomeExpenceView()
             Text("Second View")
-        }, arr: tabs)
+        }, text: textComponent, underline: underline)
     }
 }
 
