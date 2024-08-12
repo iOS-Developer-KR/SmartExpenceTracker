@@ -11,6 +11,7 @@ import PhotosUI
 struct IncomeExpenceView: View {
     @Environment(AnalyzingGPT.self) var gpt
     @State private var selectedImageItem: PhotosPickerItem?
+    @State private var selectedMonth = false
     @State private var showDialog = false
     @State private var photoPicker = false
     @State private var captureImage = false
@@ -21,7 +22,7 @@ struct IncomeExpenceView: View {
 
                 VStack {
                     
-                    DateSelectView()
+                    DateSelectView(selected: $selectedMonth)
                     
                     HStack {
                         
@@ -29,6 +30,8 @@ struct IncomeExpenceView: View {
                         Spacer()
 
                     }.padding(.horizontal)
+                    
+                    Spacer()
                     
                 }
                 .toolbar {
@@ -48,6 +51,9 @@ struct IncomeExpenceView: View {
             .photosPicker(isPresented: $photoPicker, selection: $selectedImageItem, matching: .images)
             .navigationDestination(item: $bindableGPT.selectedImage, destination: { _ in
                 AnalyzingPhotoView(selectedImage: $bindableGPT.selectedImage)
+            })
+            .sheet(isPresented: $selectedMonth, content: {
+                
             })
             .fullScreenCover(isPresented: $captureImage) {
                 AccessCameraView(isPresented: $bindableGPT.isShowingCamera, selectedImage: $bindableGPT.selectedImage)
@@ -83,6 +89,7 @@ struct IncomeExpenceView: View {
 
 #Preview {
     IncomeExpenceView()
+        .environment(AnalyzingGPT())
 }
 
 

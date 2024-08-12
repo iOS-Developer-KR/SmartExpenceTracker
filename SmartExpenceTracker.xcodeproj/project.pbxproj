@@ -24,6 +24,7 @@
 		2BB6B1A12C5E320A0096A745 /* IncomeExpenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */; };
 		2BB6B1C52C624FB60096A745 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B1C42C624FB60096A745 /* Category.swift */; };
 		2BF3E4602C64EEC7008298EC /* YTWSwiftUILibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF3E45F2C64EEC7008298EC /* YTWSwiftUILibrary */; };
+		2BF3E4622C6A6192008298EC /* MonthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3E4612C6A6192008298EC /* MonthSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		2BB6B19E2C5E30030096A745 /* DateSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectView.swift; sourceTree = "<group>"; };
 		2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeExpenceView.swift; sourceTree = "<group>"; };
 		2BB6B1C42C624FB60096A745 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2BF3E4612C6A6192008298EC /* MonthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				2BB6B19E2C5E30030096A745 /* DateSelectView.swift */,
+				2BF3E4612C6A6192008298EC /* MonthSelectionView.swift */,
 				2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */,
 				2B64B18F2C5A2ED600F7A74B /* CalendarView.swift */,
 			);
@@ -277,6 +280,7 @@
 				2B80111B2C3ACAE100EFF0DF /* MainContainer.swift in Sources */,
 				2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */,
 				2BB285962C3E162800B4CC09 /* Extension+View.swift in Sources */,
+				2BF3E4622C6A6192008298EC /* MonthSelectionView.swift in Sources */,
 				2BB6B1A12C5E320A0096A745 /* IncomeExpenceView.swift in Sources */,
 				2B64B1902C5A2ED600F7A74B /* CalendarView.swift in Sources */,
 				2B8011472C3ACD2400EFF0DF /* AnalyzingGPT.swift in Sources */,

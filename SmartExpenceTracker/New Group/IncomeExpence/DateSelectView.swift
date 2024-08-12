@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DateSelectView: View {
+    
+    @Binding var selected: Bool
+    
     var body: some View {
         HStack {
             Button {
@@ -18,9 +21,10 @@ struct DateSelectView: View {
             }
             
             Button {
-                
+                selected.toggle()
             } label: {
                 Text("8월")
+                    .foregroundStyle(Color.primary)
                     .underline()
                     .padding(.horizontal, 5)
             }
@@ -38,5 +42,5 @@ struct DateSelectView: View {
 }
 
 #Preview {
-    DateSelectView()
+    DateSelectView(selected: .constant(false))
 }
