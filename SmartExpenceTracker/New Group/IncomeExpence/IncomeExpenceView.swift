@@ -11,10 +11,13 @@ import PhotosUI
 struct IncomeExpenceView: View {
     @Environment(AnalyzingGPT.self) var gpt
     @State private var selectedImageItem: PhotosPickerItem?
+    @State private var currentDate = Date()
     @State private var selectedMonth = false
     @State private var showDialog = false
     @State private var photoPicker = false
     @State private var captureImage = false
+    
+    let window = UIApplication.shared.connectedScenes.first as! UIWindowScene
     
     var body: some View {
         @Bindable var bindableGPT = gpt
@@ -22,11 +25,11 @@ struct IncomeExpenceView: View {
 
                 VStack {
                     
-                    DateSelectView(selected: $selectedMonth)
+                    DateSelectView(currentDate: $currentDate, selected: $selectedMonth)
                     
                     HStack {
                         
-                        Text("원")
+                        Text("0원")
                         Spacer()
 
                     }.padding(.horizontal)
@@ -53,7 +56,8 @@ struct IncomeExpenceView: View {
                 AnalyzingPhotoView(selectedImage: $bindableGPT.selectedImage)
             })
             .sheet(isPresented: $selectedMonth, content: {
-                
+                MonthSelectionView(selectedDate: $currentDate)
+                    .presentationDetents([.medium])
             })
             .fullScreenCover(isPresented: $captureImage) {
                 AccessCameraView(isPresented: $bindableGPT.isShowingCamera, selectedImage: $bindableGPT.selectedImage)

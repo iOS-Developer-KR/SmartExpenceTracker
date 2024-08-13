@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DateSelectView: View {
     
+    @Binding var currentDate: Date
     @Binding var selected: Bool
     
     var body: some View {
@@ -21,9 +22,12 @@ struct DateSelectView: View {
             }
             
             Button {
-                selected.toggle()
+                withAnimation(.spring) {
+                    selected.toggle()
+                }
+                
             } label: {
-                Text("8월")
+                Text(currentDate, formatter: dateToString)
                     .foregroundStyle(Color.primary)
                     .underline()
                     .padding(.horizontal, 5)
@@ -39,8 +43,15 @@ struct DateSelectView: View {
             Spacer()
         }.padding()
     }
+    
+    var dateToString: DateFormatter {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "M월"
+        formatter.locale = .autoupdatingCurrent
+        return formatter
+    }
 }
 
 #Preview {
-    DateSelectView(selected: .constant(false))
+    DateSelectView(currentDate: .constant(Date()), selected: .constant(false))
 }
