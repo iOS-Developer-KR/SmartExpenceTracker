@@ -25,6 +25,8 @@
 		2BB6B1C52C624FB60096A745 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6B1C42C624FB60096A745 /* Category.swift */; };
 		2BF3E4602C64EEC7008298EC /* YTWSwiftUILibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF3E45F2C64EEC7008298EC /* YTWSwiftUILibrary */; };
 		2BF3E4622C6A6192008298EC /* MonthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3E4612C6A6192008298EC /* MonthSelectionView.swift */; };
+		2BF3E4702C6E5833008298EC /* PhotoDecisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3E46F2C6E5833008298EC /* PhotoDecisionView.swift */; };
+		2BF3E4732C6E5ED6008298EC /* TopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3E4722C6E5ED6008298EC /* TopTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeExpenceView.swift; sourceTree = "<group>"; };
 		2BB6B1C42C624FB60096A745 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2BF3E4612C6A6192008298EC /* MonthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectionView.swift; sourceTree = "<group>"; };
+		2BF3E46F2C6E5833008298EC /* PhotoDecisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDecisionView.swift; sourceTree = "<group>"; };
+		2BF3E4722C6E5ED6008298EC /* TopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 			children = (
 				2B80111A2C3ACAE100EFF0DF /* MainContainer.swift */,
 				2BB6B1C22C624B540096A745 /* IncomeExpence */,
+				2BF3E46E2C6E5810008298EC /* PhotoDecisionView */,
 				2BB6B1C12C624B4A0096A745 /* AccessCamera */,
 			);
 			path = View;
@@ -161,6 +166,7 @@
 				2B8011182C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift */,
 				2B64B1912C5A2EDB00F7A74B /* Main */,
 				2B64B1952C5A2F3000F7A74B /* Analyze */,
+				2BF3E4712C6E5EBB008298EC /* ViewModel */,
 				2B64B1992C5A2FD100F7A74B /* Model */,
 				2BB285952C3E162800B4CC09 /* Extension+View.swift */,
 				2B80111C2C3ACAE100EFF0DF /* Assets.xcassets */,
@@ -193,9 +199,25 @@
 				2BF3E4612C6A6192008298EC /* MonthSelectionView.swift */,
 				2BB6B1A02C5E320A0096A745 /* IncomeExpenceView.swift */,
 				2B64B18F2C5A2ED600F7A74B /* CalendarView.swift */,
+				2BF3E46F2C6E5833008298EC /* PhotoDecisionView.swift */,
 			);
 			name = IncomeExpence;
 			path = "../../New Group/IncomeExpence";
+			sourceTree = "<group>";
+		};
+		2BF3E46E2C6E5810008298EC /* PhotoDecisionView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PhotoDecisionView;
+			sourceTree = "<group>";
+		};
+		2BF3E4712C6E5EBB008298EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2BF3E4722C6E5ED6008298EC /* TopTabBar.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB2859A2C3E3B6B00B4CC09 /* SavingExpenceView.swift in Sources */,
+				2BF3E4702C6E5833008298EC /* PhotoDecisionView.swift in Sources */,
 				2B80111B2C3ACAE100EFF0DF /* MainContainer.swift in Sources */,
 				2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */,
 				2BB285962C3E162800B4CC09 /* Extension+View.swift in Sources */,
@@ -284,6 +307,7 @@
 				2BB6B1A12C5E320A0096A745 /* IncomeExpenceView.swift in Sources */,
 				2B64B1902C5A2ED600F7A74B /* CalendarView.swift in Sources */,
 				2B8011472C3ACD2400EFF0DF /* AnalyzingGPT.swift in Sources */,
+				2BF3E4732C6E5ED6008298EC /* TopTabBar.swift in Sources */,
 				2B64B19B2C5A2FDF00F7A74B /* Receipts.swift in Sources */,
 				2BB285982C3E19A300B4CC09 /* AnalyzingPhotoView.swift in Sources */,
 				2BB6B1C52C624FB60096A745 /* Category.swift in Sources */,

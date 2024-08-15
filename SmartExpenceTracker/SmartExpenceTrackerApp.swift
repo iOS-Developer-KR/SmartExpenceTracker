@@ -10,9 +10,8 @@ import SwiftData
 
 @main
 struct SmartExpenceTrackerApp: App {
-
+    @State private var topTabBarState = TopTabBarState()
     @State private var gpt = AnalyzingGPT()
-//    @State private var receipts = Receipts()
     let modelContainer: ModelContainer
     
     init() {
@@ -27,7 +26,7 @@ struct SmartExpenceTrackerApp: App {
         WindowGroup {
             MainContainer()
                 .environment(gpt)
-//                .environment(receipts)
+                .environment(topTabBarState)
                 
         }
         .modelContainer(modelContainer)

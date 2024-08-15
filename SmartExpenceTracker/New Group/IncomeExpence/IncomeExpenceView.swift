@@ -13,12 +13,19 @@ struct IncomeExpenceView: View {
     @Environment(AnalyzingGPT.self) var gpt
     @Query private var listReceipts: [Receipts]
     
-    @State private var selectedImageItem: PhotosPickerItem?
+
     @State private var currentDate = Date()
     @State private var selectedMonth = false
     @State private var showDialog = false
     @State private var photoPicker = false
     @State private var captureImage = false
+    @State private var photoDecision = false
+    @State private var selectedImageItem: PhotosPickerItem?
+    @State private var selectedImage: UIImage? {
+        didSet {
+            photoDecision = true
+        }
+    }
     
     let window = UIApplication.shared.connectedScenes.first as! UIWindowScene
     
@@ -67,6 +74,9 @@ struct IncomeExpenceView: View {
             .fullScreenCover(isPresented: $captureImage) {
                 AccessCameraView(isPresented: $bindableGPT.isShowingCamera, selectedImage: $bindableGPT.selectedImage)
             }
+            .navigationDestination(isPresented: $photoDecision, destination: {
+                PhotoDecisionView(selectedImage: $selectedImage)
+            })
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
             }
@@ -85,7 +95,7 @@ struct IncomeExpenceView: View {
             switch result {
             case .success(let data):
                 if let data = data, let image = UIImage(data: data) {
-                    gpt.selectedImage = image
+                    selectedImage = image
                 }
             case .failure(let error):
                 print("Error loading image: \(error.localizedDescription)")
