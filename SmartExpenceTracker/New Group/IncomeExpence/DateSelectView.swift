@@ -45,7 +45,7 @@ struct DateSelectView: View {
     }
     
     var dateToString: DateFormatter {
-        var formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "M월"
         formatter.locale = .autoupdatingCurrent
         return formatter

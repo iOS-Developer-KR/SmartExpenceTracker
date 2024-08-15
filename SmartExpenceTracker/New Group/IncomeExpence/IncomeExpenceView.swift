@@ -7,9 +7,12 @@
 
 import SwiftUI
 import PhotosUI
+import SwiftData
 
 struct IncomeExpenceView: View {
     @Environment(AnalyzingGPT.self) var gpt
+    @Query private var listReceipts: [Receipts]
+    
     @State private var selectedImageItem: PhotosPickerItem?
     @State private var currentDate = Date()
     @State private var selectedMonth = false
@@ -33,6 +36,8 @@ struct IncomeExpenceView: View {
                         Spacer()
 
                     }.padding(.horizontal)
+                    
+                    
                     
                     Spacer()
                     

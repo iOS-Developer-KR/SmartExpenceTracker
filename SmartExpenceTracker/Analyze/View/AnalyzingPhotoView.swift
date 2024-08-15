@@ -77,7 +77,7 @@ struct AnalyzingPhotoView: View {
 
 extension AnalyzingPhotoView {
     @MainActor func analyze() {
-        guard let image = selectedImage else { return }
+        guard selectedImage != nil else { return }
         gpt.analyze()
         
     }

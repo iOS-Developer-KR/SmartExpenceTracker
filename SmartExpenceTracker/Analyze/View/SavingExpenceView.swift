@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SavingExpenceView: View {
     
+    @Environment(\.modelContext) var dbContext
     @Environment(AnalyzingGPT.self) var gpt
     
     var body: some View {
@@ -18,7 +20,8 @@ struct SavingExpenceView: View {
                 Spacer()
                 
                 Button {
-                    
+                    let newReceipts = Receipts(title: gpt.result.title, amount: gpt.result.amount, category: gpt.result.category, date: gpt.result.date)
+                    dbContext.insert(newReceipts)
                 } label: {
                     Text("Save")
                         .padding()
@@ -40,6 +43,7 @@ struct SavingExpenceView: View {
             HStack {
                 Text("category")
                 Spacer()
+                gpt.result.category.icon
                 Text(gpt.result.category.displayName)
             }
             .padding()
