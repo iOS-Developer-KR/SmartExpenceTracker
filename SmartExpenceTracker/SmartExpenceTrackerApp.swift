@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct SmartExpenceTrackerApp: App {
-    @State private var topTabBarState = TopTabBarState()
+    @State private var topTabBarState = ViewState()
     @State private var gpt = AnalyzingGPT()
     let modelContainer: ModelContainer
     

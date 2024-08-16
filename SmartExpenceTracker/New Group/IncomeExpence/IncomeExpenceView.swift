@@ -11,9 +11,9 @@ import SwiftData
 
 struct IncomeExpenceView: View {
     @Environment(AnalyzingGPT.self) var gpt
+    @Environment(ViewState.self) var viewState
     @Query private var listReceipts: [Receipts]
     
-
     @State private var currentDate = Date()
     @State private var selectedMonth = false
     @State private var showDialog = false
@@ -31,7 +31,8 @@ struct IncomeExpenceView: View {
     
     var body: some View {
         @Bindable var bindableGPT = gpt
-        NavigationStack {
+        @Bindable var bindableViewState = viewState
+        NavigationStack(path: $bindableViewState.stack) {
 
                 VStack {
                     
@@ -44,6 +45,15 @@ struct IncomeExpenceView: View {
 
                     }.padding(.horizontal)
                     
+                    ForEach(listReceipts) { receipt in
+                        HStack {
+                            Text(receipt.category.displayName)
+                            
+                            Spacer()
+                            
+                            Text(receipt.date)
+                        }
+                    }
                     
                     
                     Spacer()
@@ -75,16 +85,16 @@ struct IncomeExpenceView: View {
                 AccessCameraView(isPresented: $bindableGPT.isShowingCamera, selectedImage: $bindableGPT.selectedImage)
             }
             .navigationDestination(isPresented: $photoDecision, destination: {
-                PhotoDecisionView(selectedImage: $selectedImage)
+                AnalyzingPhotoView(selectedImage: $selectedImage)
             })
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
             }
-            .onChange(of: gpt.selectedImage) { oldValue, newValue in
-                DispatchQueue.main.async {
-                    gpt.analyze()
-                }
-            }
+//            .onChange(of: gpt.selectedImage) { oldValue, newValue in
+//                DispatchQueue.main.async {
+//                    gpt.analyze()
+//                }
+//            }
 
         }
     }
@@ -95,7 +105,7 @@ struct IncomeExpenceView: View {
             switch result {
             case .success(let data):
                 if let data = data, let image = UIImage(data: data) {
-                    selectedImage = image
+                    gpt.selectedImage = image
                 }
             case .failure(let error):
                 print("Error loading image: \(error.localizedDescription)")

@@ -9,25 +9,23 @@ import SwiftUI
 import YTWSwiftUILibrary
 
 struct MainContainer: View {
-    @Environment(TopTabBarState.self) var barState
+    @Environment(ViewState.self) var barState
     let textComponent: TextComponent = TextComponent(tabs: ["자산", "소비﹒수입", "연말정산"], selectedColor: Color.primary)
     let underline: UnderLineComponent = UnderLineComponent(visible: true, color: Color.primary, thickness: 1.0)
     
     var body: some View {
         
-        if barState.exist {
-            TopTabBar(content: {
-                Text("First View")
-                IncomeExpenceView()
-                Text("Second View")
-            }, text: textComponent, underline: underline)
-        }
+        TopTabBar(content: {
+            Text("First View")
+            IncomeExpenceView()
+            Text("Second View")
+        }, text: textComponent, underline: underline, visible: barState.topTabBarExist)
     }
 }
 
 #Preview {
     MainContainer()
-        .environment(TopTabBarState())
+        .environment(ViewState())
 }
 
 

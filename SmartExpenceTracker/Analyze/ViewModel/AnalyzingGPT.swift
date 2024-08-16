@@ -11,132 +11,55 @@ import SwiftUI
 import UIKit
 //import Combine
 
+
 @Observable
 class AnalyzingGPT {
-    
-    var result: Receipts = Receipts(title: "no value", amount: 0, category: Category.none, date: "no value")
+    // = Receipts(title: "no value", amount: 0, category: Category.none, date: "no value", marchant: Marchan)
+    var result: Receipts? {
+        didSet {
+            print("레시피 세팅오나료")
+        }
+    }
     var marchants: [Marchandize] = []
-    var navigate: Bool = false
+    var analyzed: Bool = true {
+        didSet {
+            print("값이 왜 바뀌는데:\(self.analyzed)")
+        }
+    }
+    var analyzing: Bool = false
     var isShowingCamera: Bool = false
-    var selectedImage: UIImage?
+    var selectedImage: UIImage? 
+//    {
+//        didSet {
+//            Task { @MainActor in
+//                guard selectedImage != nil else { return }
+//                print("이거👹")
+//                analyzed = false  // 초기화가 필요하면 유지
+//                self.analyze()     // 분석 시작
+//            }
+//        }
+//    }
+
+    
+    init() {
+        print("이게 실행된다고?🐶")
+    }
     
     var openAI = OpenAI(apiToken: "sk-zz4yHGCwdO-3nIQSa5Q_YbM-RPhHuIuJ1ouzVUqN-qT3BlbkFJF91EyYcFGV4vgEmYib2C9vIxHxMFFgfDIFpESrTjgA")
     
     func reset() {
-        DispatchQueue.main.async {
-            self.result = .init(title: "", amount: 0, category: Category.none, date: "")
+//        DispatchQueue.main.async {
+            self.result = .none
             self.marchants = []
-            self.navigate = false
-        }
-    }
-    @MainActor
-    func analyzeData(imageData: Data) {
-        reset()
-        let functions = [
-            ChatQuery.ChatCompletionToolParam(function: .init(
-                name: "Analysing-Given-Reciepts",
-                description: "Analyze this Reciepts by given image",
-                parameters:
-                        .init(
-                            type: .object,
-                            properties: [
-                                "title": .init(type: .string, description: "Set the simple title of this reciepts"),
-                                "amount": .init(type: .integer, description: "total payment. If you're not sure, just use USD as default value"),
-                                "category": .init(type: .string, description: "the category of expense. Set category based on the title of expense", enum: Category.allCases.map { $0.rawValue }),
-                                "date": .init(type: .string, description: "Date of expense. Set date using of this reciepts information, the date must be formatted yyyy년 M월 d일")
-                            ],
-                            required: ["title", "amount", "category"]
-                        )
-                )
-             ),
-            ChatQuery.ChatCompletionToolParam(function: .init(
-                name: "Analysing-Given-Reciepts",
-                description: "Analyze this Reciepts and give me each merchandise info by given image",
-                parameters:
-                        .init(
-                            type: .object,
-                            properties: [
-                                "object": .init(type: .string, description: "Set the each object name from this reciepts"),
-                                "price": .init(type: .integer, description: "Set the each object price from this reciepts. If you're not sure, just use USD as default value"),
-                            ],
-                            required: ["object", "price"]
-                        )
-                )
-             )
-        ]
-        
-        let imageParam = ChatQuery.ChatCompletionMessageParam.ChatCompletionUserMessageParam.init(
-            content:
-                .vision([
-                    .chatCompletionContentPartImageParam(.init(imageUrl: .init(url: imageData, detail: .auto)))
-                ])
-        )
-        
-        Task {
-            do {
-                let chatsStream = try await self.openAI.chats(query: ChatQuery(messages: [.user(imageParam)], model: .gpt4_o, tools: functions))
-                for chat in chatsStream.choices {
-                    for tool in chat.message.toolCalls! {
-                        print(tool.function.arguments.description)
-                    }
-
-                    if let toolcalls = chat.message.toolCalls, let arg = toolcalls.first?.function.arguments.data(using: .utf8) {
-                        DispatchQueue.main.async { [self] in
-                            print(arg)
-                            self.result = try! JSONDecoder().decode(Receipts.self, from: arg)
-                            print("해독한 json" + self.result.category.displayName + self.result.date + result.title)
-                            
-                            
-                            for tool in toolcalls.dropFirst() {
-                                if let arg = tool.function.arguments.data(using: .utf8) {
-                                    let marchant = try! JSONDecoder().decode(Marchandize.self, from: arg)
-                                    marchants.append(marchant)
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+            self.analyzed = false
+//            self.isAnalyzing = true
+//        }
     }
     
     @MainActor
-    func analyze() {
+    func analyze(pressed: Binding<Bool>) {
         reset()
-        let functions = [
-            ChatQuery.ChatCompletionToolParam(function: .init(
-                name: "Analysing-Given-Reciepts",
-                description: "Analyze this Reciepts by given image",
-                parameters:
-                        .init(
-                            type: .object,
-                            properties: [
-                                "title": .init(type: .string, description: "Set the simple title of this reciepts"),
-                                "amount": .init(type: .integer, description: "total payment. If you're not sure, just use USD as default value"),
-                                "category": .init(type: .string, description: "the category of expense. Set category based on the title of expense", enum: Category.allCases.map { $0.rawValue }),
-                                "date": .init(type: .string, description: "Date of expense. Set date using of this reciepts information, the date must be formatted yyy-MM-dd")
-                            ],
-                            required: ["title", "amount", "category"]
-                        )
-                )
-             ),
-            ChatQuery.ChatCompletionToolParam(function: .init(
-                name: "Analysing-Given-Reciepts",
-                description: "Analyze this Reciepts and give me each merchandise info by given image",
-                parameters:
-                        .init(
-                            type: .object,
-                            properties: [
-                                "object": .init(type: .string, description: "Set the each object name from this reciepts"),
-                                "price": .init(type: .integer, description: "Set the each object price from this reciepts. If you're not sure, just use USD as default value"),
-                            ],
-                            required: ["object", "price"]
-                        )
-                )
-             )
-        ]
+
         
         // guard let pngData = imageData.pngData() else { return } // already tried
         guard let jpegData = selectedImage?.jpegData(compressionQuality: 0.1) else { return }
@@ -160,38 +83,48 @@ class AnalyzingGPT {
         
         Task {
             do {
-                let chatsStream = try await self.openAI.chats(query: ChatQuery(messages: [.user(imageParam)], model: .gpt4_o, tools: functions))
+                let chatsStream = try await self.openAI.chats(query: ChatQuery(messages: [.user(imageParam)], model: .gpt4_o, tools: tools))
+                
                 for chat in chatsStream.choices {
-                    for tool in chat.message.toolCalls! {
-                        print(tool.function.arguments.description)
-                    }
-
-                    if let toolcalls = chat.message.toolCalls, let arg = toolcalls.first?.function.arguments.data(using: .utf8) {
-                        DispatchQueue.main.async { [self] in
-                            print("가져온 데이터:\(arg)")
-                            self.result = try! JSONDecoder().decode(Receipts.self, from: arg)
-                            if result.amount == 0 {
-                                self.navigate = false
-                            } else {
-                                self.navigate = true
+                    print("🐱" + (chat.message.toolCalls?.first?.function.arguments.description ?? "아오"))
+//                    DispatchQueue.main.async { [self] in
+                        for tool in chat.message.toolCalls! {
+                            print(tool.function.name + "🐥" + tool.function.arguments.description)
+                            guard let arg = tool.function.arguments.data(using: .utf8) else {
+                                print("그래그래그래글개ㅡ랙")
+                                return
                             }
-                            print("해독한 json" + self.result.category.displayName + self.result.date + result.title)
+                            self.analyzed = true
+//                            self.isAnalyzing = false
                             
-                            
-                            for tool in toolcalls.dropFirst() {
-                                if let arg = tool.function.arguments.data(using: .utf8) {
-                                    let marchant = try! JSONDecoder().decode(Marchandize.self, from: arg)
-                                    marchants.append(marchant)
-                                }
-                                
+                            switch tool.function.name {
+                            case "addExpenseLog" :
+                                print("그래그래그래그래그래그래그랙!!!!!!!")
+                                self.result = try! JSONDecoder().decode(Receipts.self, from: arg)
+                                break
+                            case "listExpenses" :
+                                print("rfmosdfmasdofmasdofmasdof@!@@@@@@@")
+                                let marchant = try! JSONDecoder().decode(Marchandize.self, from: arg)
+                                marchants.append(marchant)
+                                break
+                            default:
+                                break
                             }
                         }
+                        
+                        print("체크포인트11111")
+                        print(self.analyzed)
+                        print(self.analyzed)
+                    pressed.wrappedValue = true
                     }
-                }
+//                }
+
+
             } catch {
                 print(error.localizedDescription)
             }
         }
+        print(self.analyzed)
     }
     
 

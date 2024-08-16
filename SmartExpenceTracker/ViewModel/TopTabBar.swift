@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 @Observable
-class TopTabBarState {
-    var exist = true
+class ViewState {
+    var stack = NavigationPath()
+    var topTabBarExist = true
 }

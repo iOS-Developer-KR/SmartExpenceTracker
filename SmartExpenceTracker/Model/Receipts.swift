@@ -10,40 +10,39 @@ import SwiftData
 
 @Model
 class Receipts: Codable {
-    var title: String
-    var amount: Int
-    var category: Category
-    var date: String
+    var title: String = ""
+    var amount: Int = 0
+    var category: Category = Category.none
+    var date: String = ""
+//    var marchant: Marchandize
     
-    init(title: String, amount: Int, category: Category, date: String) {
-//        self.id = id
+    init(title: String, amount: Int, category: Category, date: String/*, marchant: Marchandize*/) {
         self.title = title
         self.amount = amount
         self.category = category
         self.date = date
+//        self.marchant = marchant
     }
-
-    // Implementing the Encodable protocol
+  
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
         try container.encode(amount, forKey: .amount)
         try container.encode(category, forKey: .category)
         try container.encode(date, forKey: .date)
+//        try container.encode(marchant, forKey: .marchant)
     }
     
-    // Implementing the Decodable protocol
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-//        id = try container.decode(UUID.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
         amount = try container.decode(Int.self, forKey: .amount)
         category = try container.decode(Category.self, forKey: .category)
         date = try container.decode(String.self, forKey: .date)
+//        marchant = try container.decode(Marchandize.self, forKey: .marchant)
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, title, amount, category, date
+        case title, amount, category, date//, marchant
     }
 }

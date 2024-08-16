@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2588292C6F0B1500A2655A /* FunctionTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2588282C6F0B1500A2655A /* FunctionTools.swift */; };
 		2B64B18E2C57C89B00F7A74B /* AccessCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64B18D2C57C89B00F7A74B /* AccessCameraView.swift */; };
 		2B64B1902C5A2ED600F7A74B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64B18F2C5A2ED600F7A74B /* CalendarView.swift */; };
 		2B64B19B2C5A2FDF00F7A74B /* Receipts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64B19A2C5A2FDF00F7A74B /* Receipts.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B2588282C6F0B1500A2655A /* FunctionTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTools.swift; sourceTree = "<group>"; };
 		2B64B18D2C57C89B00F7A74B /* AccessCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCameraView.swift; sourceTree = "<group>"; };
 		2B64B18F2C5A2ED600F7A74B /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		2B64B19A2C5A2FDF00F7A74B /* Receipts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipts.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				2B8011462C3ACD2400EFF0DF /* AnalyzingGPT.swift */,
+				2B2588282C6F0B1500A2655A /* FunctionTools.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				2BB2859A2C3E3B6B00B4CC09 /* SavingExpenceView.swift in Sources */,
 				2BF3E4702C6E5833008298EC /* PhotoDecisionView.swift in Sources */,
 				2B80111B2C3ACAE100EFF0DF /* MainContainer.swift in Sources */,
+				2B2588292C6F0B1500A2655A /* FunctionTools.swift in Sources */,
 				2B8011192C3ACAE100EFF0DF /* SmartExpenceTrackerApp.swift in Sources */,
 				2BB285962C3E162800B4CC09 /* Extension+View.swift in Sources */,
 				2BF3E4622C6A6192008298EC /* MonthSelectionView.swift in Sources */,
