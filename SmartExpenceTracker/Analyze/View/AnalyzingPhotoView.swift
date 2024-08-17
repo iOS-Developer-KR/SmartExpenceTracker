@@ -9,19 +9,36 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 
 struct AnalyzingPhotoView: View {
-    @Environment(ViewState.self) var barState
+    @Environment(ViewState.self) var viewState
     @Environment(AnalyzingGPT.self) var gpt
     @State private var isOpacity: Bool = false
     @State private var isOffset: Bool = false
     @State private var pressed: Bool = false
     
     @Binding var selectedImage: UIImage?
+    @Binding var topTabBarExist: Bool
     
     var body: some View {
         @Bindable var bindableGPT = gpt
-        ZStack {
-            GeometryReader(content: { geometry in
+//        ZStack {
+
+//            GeometryReader(content: { geometry in
                 VStack {
+                    Button {
+                        topTabBarExist.toggle()
+                        print(viewState.topTabBarExist)
+                        print(":시발")
+
+                    } label: {
+                        Text("지우기")
+                    }
+                    
+                    Button {
+                        viewState.topTabBarExist = false
+                    } label : {
+                        Text("abc")
+                    }
+
                     Spacer()
                     if let image = selectedImage {
                         Image(uiImage: image)
@@ -29,6 +46,26 @@ struct AnalyzingPhotoView: View {
                             .scaledToFit()
                     }
                     Spacer()
+                }
+                .onAppear {
+                    print(":시발")
+                    viewState.topTabBarExist = false
+                }
+                .sheet(isPresented: $pressed) {
+                    SavingExpenceView()
+                        .presentationDetents([.medium, .fraction(0.2), .large])
+                        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                        .interactiveDismissDisabled()
+                        .opacity(0.8)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            analyze()
+                        } label: {
+                                Text("분석하기")
+                        }
+                    }
                 }
                 
                 if !gpt.analyzed {
@@ -53,36 +90,13 @@ struct AnalyzingPhotoView: View {
                             }
                         }
                 }
+        
                 
-            })
-        }
-//        .onChange(of: $bindableGPT.result, { oldValue, newValue in
-//            self.pressed = true
-//        })
-        .sheet(isPresented: $pressed/*$bindableGPT.analyzing*/) {
-            SavingExpenceView()
-                .presentationDetents([.medium, .fraction(0.2), .large])
-                .presentationBackgroundInteraction(.enabled(upThrough: .medium))
-                .interactiveDismissDisabled()
-                .opacity(0.8)
+//            })
+//        }
+        
 
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    analyze()
-//                    pressed = true
-//                    gpt.selectedImage = selectedImage
-                } label: {
-                    
-                        Text("분석하기")
-                    
-                }
-            }
-        }
-        .onAppear {
-            barState.topTabBarExist = false
-        }
+
     }
 }
 
@@ -94,7 +108,7 @@ extension AnalyzingPhotoView {
 }
 
 #Preview {
-    AnalyzingPhotoView(selectedImage: .constant(.japan1))
+    AnalyzingPhotoView(selectedImage: .constant(.japan1), topTabBarExist: .constant(false))
         .environment(AnalyzingGPT())
         .environment(ViewState())
 }

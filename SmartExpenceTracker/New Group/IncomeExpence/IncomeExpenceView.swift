@@ -10,6 +10,7 @@ import PhotosUI
 import SwiftData
 
 struct IncomeExpenceView: View {
+    
     @Environment(AnalyzingGPT.self) var gpt
     @Environment(ViewState.self) var viewState
     @Query private var listReceipts: [Receipts]
@@ -19,20 +20,23 @@ struct IncomeExpenceView: View {
     @State private var showDialog = false
     @State private var photoPicker = false
     @State private var captureImage = false
-    @State private var photoDecision = false
+
     @State private var selectedImageItem: PhotosPickerItem?
-    @State private var selectedImage: UIImage? {
-        didSet {
-            photoDecision = true
-        }
-    }
+    @State private var selectedImage: UIImage?
+
     
     let window = UIApplication.shared.connectedScenes.first as! UIWindowScene
     
     var body: some View {
         @Bindable var bindableGPT = gpt
         @Bindable var bindableViewState = viewState
-        NavigationStack(path: $bindableViewState.stack) {
+        
+        Button {
+            viewState.topTabBarExist.toggle()
+        } label: {
+            Text("토글")
+        }
+//        NavigationStack(path: $bindableViewState.stack) {
 
                 VStack {
                     
@@ -41,6 +45,7 @@ struct IncomeExpenceView: View {
                     HStack {
                         
                         Text("0원")
+                            
                         Spacer()
 
                     }.padding(.horizontal)
@@ -55,10 +60,10 @@ struct IncomeExpenceView: View {
                         }
                     }
                     
-                    
                     Spacer()
                     
                 }
+
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
                         Button {
@@ -69,13 +74,16 @@ struct IncomeExpenceView: View {
                     }
                 }
             
+            
             .confirmationDialog("Selection", isPresented: $showDialog) {
                 Button("사진찍기") { captureImage.toggle() }
                 Button("앨범 선택") { photoPicker.toggle() }
             }
             .photosPicker(isPresented: $photoPicker, selection: $selectedImageItem, matching: .images)
             .navigationDestination(item: $bindableGPT.selectedImage, destination: { _ in
-                AnalyzingPhotoView(selectedImage: $bindableGPT.selectedImage)
+                AnalyzingPhotoView(selectedImage: $bindableGPT.selectedImage, topTabBarExist: $bindableViewState.topTabBarExist)
+                    .environment(AnalyzingGPT())
+                    .environment(ViewState())
             })
             .sheet(isPresented: $selectedMonth, content: {
                 MonthSelectionView(selectedDate: $currentDate)
@@ -84,19 +92,10 @@ struct IncomeExpenceView: View {
             .fullScreenCover(isPresented: $captureImage) {
                 AccessCameraView(isPresented: $bindableGPT.isShowingCamera, selectedImage: $bindableGPT.selectedImage)
             }
-            .navigationDestination(isPresented: $photoDecision, destination: {
-                AnalyzingPhotoView(selectedImage: $selectedImage)
-            })
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
             }
-//            .onChange(of: gpt.selectedImage) { oldValue, newValue in
-//                DispatchQueue.main.async {
-//                    gpt.analyze()
-//                }
-//            }
-
-        }
+//        }
     }
     
     private func loadImage(from item: PhotosPickerItem?) {
@@ -105,6 +104,7 @@ struct IncomeExpenceView: View {
             switch result {
             case .success(let data):
                 if let data = data, let image = UIImage(data: data) {
+                    print("흠 사진 저장됐는데")
                     gpt.selectedImage = image
                 }
             case .failure(let error):
@@ -117,8 +117,11 @@ struct IncomeExpenceView: View {
 }
 
 #Preview {
-    IncomeExpenceView()
-        .environment(AnalyzingGPT())
+    NavigationStack {
+        IncomeExpenceView()
+            .environment(AnalyzingGPT())
+            .environment(ViewState())
+    }
 }
 
 
