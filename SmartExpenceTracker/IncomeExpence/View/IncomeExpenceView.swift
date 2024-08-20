@@ -31,13 +31,6 @@ struct IncomeExpenceView: View {
         @Bindable var bindableGPT = gpt
         @Bindable var bindableViewState = viewState
         
-        Button {
-            viewState.topTabBarExist.toggle()
-        } label: {
-            Text("토글")
-        }
-//        NavigationStack(path: $bindableViewState.stack) {
-
                 VStack {
                     
                     DateSelectView(currentDate: $currentDate, selected: $selectedMonth)
@@ -95,7 +88,6 @@ struct IncomeExpenceView: View {
             .onChange(of: selectedImageItem) { oldItem, newItem in
                 loadImage(from: newItem)
             }
-//        }
     }
     
     private func loadImage(from item: PhotosPickerItem?) {
@@ -104,8 +96,8 @@ struct IncomeExpenceView: View {
             switch result {
             case .success(let data):
                 if let data = data, let image = UIImage(data: data) {
-                    print("흠 사진 저장됐는데")
                     gpt.selectedImage = image
+                    selectedImageItem = .none
                 }
             case .failure(let error):
                 print("Error loading image: \(error.localizedDescription)")

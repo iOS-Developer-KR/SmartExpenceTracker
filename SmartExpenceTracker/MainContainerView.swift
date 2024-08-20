@@ -8,7 +8,7 @@
 import SwiftUI
 import YTWSwiftUILibrary
 
-struct MainContainer: View {
+struct MainContainerView: View {
     @Environment(ViewState.self) var viewState
     
     let textComponent: TextComponent = TextComponent(tabs: ["자산", "소비﹒수입", "연말정산"], selectedColor: Color.primary)
@@ -16,7 +16,6 @@ struct MainContainer: View {
     
     var body: some View {
         @Bindable var bindableViewState = viewState
-//            if bar.topTabBarExist {
         TopTabBar(content: {
             Text("First View")
             NavigationStack(path: $bindableViewState.stack) {
@@ -25,13 +24,11 @@ struct MainContainer: View {
             }
             Text("Second View")
         }, text: textComponent, underline: underline, visible: $bindableViewState.topTabBarExist)
-            
-//            }
     }
 }
 
 #Preview {
-    MainContainer()
+    MainContainerView()
         .environment(ViewState())
         .environment(AnalyzingGPT())
 }
