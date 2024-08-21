@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B2588292C6F0B1500A2655A /* FunctionTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2588282C6F0B1500A2655A /* FunctionTools.swift */; };
+		2B3026EA2C76109A0038251B /* RecordReceipts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3026E92C76109A0038251B /* RecordReceipts.swift */; };
 		2B64B18E2C57C89B00F7A74B /* AccessCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64B18D2C57C89B00F7A74B /* AccessCameraView.swift */; };
 		2B64B19B2C5A2FDF00F7A74B /* Receipts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64B19A2C5A2FDF00F7A74B /* Receipts.swift */; };
 		2B64B19D2C5A2FF200F7A74B /* Marchandize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64B19C2C5A2FF200F7A74B /* Marchandize.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		2B2588282C6F0B1500A2655A /* FunctionTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTools.swift; sourceTree = "<group>"; };
+		2B3026E92C76109A0038251B /* RecordReceipts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReceipts.swift; sourceTree = "<group>"; };
 		2B64B18D2C57C89B00F7A74B /* AccessCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCameraView.swift; sourceTree = "<group>"; };
 		2B64B19A2C5A2FDF00F7A74B /* Receipts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipts.swift; sourceTree = "<group>"; };
 		2B64B19C2C5A2FF200F7A74B /* Marchandize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marchandize.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				2B64B19A2C5A2FDF00F7A74B /* Receipts.swift */,
 				2B64B19C2C5A2FF200F7A74B /* Marchandize.swift */,
 				2BB6B1C42C624FB60096A745 /* Category.swift */,
+				2B3026E92C76109A0038251B /* RecordReceipts.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				2BB285982C3E19A300B4CC09 /* AnalyzingPhotoView.swift in Sources */,
 				2BB6B1C52C624FB60096A745 /* Category.swift in Sources */,
 				2BB6B19F2C5E30030096A745 /* DateSelection.swift in Sources */,
+				2B3026EA2C76109A0038251B /* RecordReceipts.swift in Sources */,
 				2B64B18E2C57C89B00F7A74B /* AccessCameraView.swift in Sources */,
 				2B64B19D2C5A2FF200F7A74B /* Marchandize.swift in Sources */,
 			);
