@@ -20,24 +20,7 @@ struct AnalyzingPhotoView: View {
     
     var body: some View {
         @Bindable var bindableGPT = gpt
-//        ZStack {
-
-//            GeometryReader(content: { geometry in
                 VStack {
-                    Button {
-                        topTabBarExist.toggle()
-                        print(viewState.topTabBarExist)
-                        print(":시발")
-
-                    } label: {
-                        Text("지우기")
-                    }
-                    
-                    Button {
-                        viewState.topTabBarExist = false
-                    } label : {
-                        Text("abc")
-                    }
 
                     Spacer()
                     if let image = selectedImage {
@@ -48,8 +31,10 @@ struct AnalyzingPhotoView: View {
                     Spacer()
                 }
                 .onAppear {
-                    print(":시발")
-                    viewState.topTabBarExist = false
+                    topTabBarExist.toggle()
+                }
+                .onDisappear {
+                    topTabBarExist.toggle()
                 }
                 .sheet(isPresented: $pressed) {
                     SavingExpenceView()
@@ -91,9 +76,6 @@ struct AnalyzingPhotoView: View {
                         }
                 }
         
-                
-//            })
-//        }
         
 
 

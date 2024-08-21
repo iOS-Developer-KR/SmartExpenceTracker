@@ -24,16 +24,13 @@ struct IncomeExpenceView: View {
     @State private var selectedImageItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
 
-    
-    let window = UIApplication.shared.connectedScenes.first as! UIWindowScene
-    
     var body: some View {
         @Bindable var bindableGPT = gpt
         @Bindable var bindableViewState = viewState
         
                 VStack {
                     
-                    DateSelectView(currentDate: $currentDate, selected: $selectedMonth)
+                    DateSelection(currentDate: $currentDate, selected: $selectedMonth)
                     
                     HStack {
                         

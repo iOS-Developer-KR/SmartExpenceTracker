@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DateSelectView: View {
+struct DateSelection: View {
     
     @Binding var currentDate: Date
     @Binding var selected: Bool
@@ -53,5 +53,5 @@ struct DateSelectView: View {
 }
 
 #Preview {
-    DateSelectView(currentDate: .constant(Date()), selected: .constant(false))
+    DateSelection(currentDate: .constant(Date()), selected: .constant(false))
 }
