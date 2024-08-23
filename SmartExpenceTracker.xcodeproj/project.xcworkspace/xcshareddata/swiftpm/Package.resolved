@@ -1,13 +1,22 @@
 {
-  "originHash" : "c351aabe13067917247f7926404d096603b95663248b51124280feb61a2edf30",
+  "originHash" : "f635efa576cebc16b9cf4a54aed49af5751ac96480606a546e98d46c27f33ccb",
   "pins" : [
     {
       "identity" : "openai",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI",
       "state" : {
-        "revision" : "fd13a41e987004d14f1793c570721953a2767b03",
-        "version" : "0.2.9"
+        "revision" : "843e087929aa806adb611dbca93f9a4a7f28be04",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "ytwswiftuilibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iOS-Developer-KR/YTWSwiftUILibrary.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e08addc852ae01631058b18e12af2a21a339b039"
       }
     }
   ],

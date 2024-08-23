@@ -6,16 +6,29 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SmartExpenceTrackerApp: App {
-
-    @State var gpt = GPT()
+    @State private var topTabBarState = ViewState()
+    @State private var gpt = AnalyzingGPT()
+    let modelContainer: ModelContainer
+    
+    init() {
+        do {
+            modelContainer = try ModelContainer(for: Receipts.self)
+        } catch {
+            fatalError("Could not initialize ModelContainer")
+        }
+    }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(gpt)
+            MainContainer()
+                .environment(gpt)
+                .environment(topTabBarState)
+                
         }
+        .modelContainer(modelContainer)
     }
 }

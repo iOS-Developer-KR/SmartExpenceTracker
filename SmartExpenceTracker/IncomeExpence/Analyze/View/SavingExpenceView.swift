@@ -6,18 +6,37 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SavingExpenceView: View {
     
-    @EnvironmentObject var gpt: GPT
+    @Environment(\.modelContext) var dbContext
+    @Environment(AnalyzingGPT.self) var gpt
+    @Environment(ViewState.self) var barState
+
     
     var body: some View {
         VStack {
             
+            HStack {
+                Spacer()
+                
+                Button {
+                    if let title = gpt.result?.title, let amount = gpt.result?.amount, let category = gpt.result?.category, let date = gpt.result?.date/*, let marchant = gpt.result?.marchant*/ {
+                        let newReceipts = Receipts(title: title, amount: amount, category: category, date: date/*, marchant: marchant*/)
+                        dbContext.insert(newReceipts)
+                        barState.stack = .init()
+                    }
+                } label: {
+                    Text("Save")
+                        .padding()
+                }
+            }
+            
             Divider()
             
             HStack {
-                DatePicker(selection: .constant(convertToDate(from: gpt.result.date) ?? Date())) {
+                DatePicker(selection: .constant(convertToDate(from: gpt.result?.date ?? "") ?? Date())) {
                     Text("Date")
                         .padding()
                 }
@@ -29,7 +48,11 @@ struct SavingExpenceView: View {
             HStack {
                 Text("category")
                 Spacer()
-                Text(gpt.result.category)
+                if let icon = gpt.result?.category.icon {
+                    icon
+                }
+                
+                Text(gpt.result?.category.displayName ?? "알수없음")
             }
             .padding()
             
@@ -38,7 +61,7 @@ struct SavingExpenceView: View {
             HStack {
                 Text("title")
                 Spacer()
-                Text(gpt.result.title)
+                Text(gpt.result?.title ?? "알수없음")
             }
             .padding()
             
@@ -64,7 +87,7 @@ struct SavingExpenceView: View {
             HStack {
                 Text("amount")
                 Spacer()
-                Text("\(gpt.result.amount)")
+                Text("\(gpt.result?.amount ?? 0)")
             }
             .padding()
             
@@ -78,7 +101,7 @@ struct SavingExpenceView: View {
 
 #Preview {
     SavingExpenceView()
-        .environmentObject(GPT())
+        .environment(AnalyzingGPT())
 }
 
 
