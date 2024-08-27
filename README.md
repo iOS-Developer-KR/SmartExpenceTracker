@@ -103,3 +103,30 @@ Rectangle()
         }
     }
 ```
+
+## 월 기준으로 정리되는 데이터
+영수증은 월 단위로 확인할 수 있으며 해당 월에 얼만큼 사용하였는지 전체 금액의 합을 상단에 나타냅니다.
+
+<div align="center">
+  <img src="ImageAsset/ReceiptsList.png" width="300" height="600"/>
+</div>
+
+### 상단 총액 구하는 코드
+
+```swift
+private var balanceSection: some View {
+    let totalAmount = listReceipts
+        .filter { receipt in
+            let receiptYearMonth = receipt.date.description.prefix(7)
+            let currentYearMonth = currentDate.description.prefix(7)
+            return receiptYearMonth == currentYearMonth
+        }
+        .reduce(0) { $0 + $1.amount }
+    
+    return HStack {
+        Text("\(totalAmount)원")
+            .padding(.horizontal)
+        Spacer()
+    }
+}
+```
