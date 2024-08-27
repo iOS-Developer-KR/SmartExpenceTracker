@@ -28,11 +28,11 @@ extension UIScreen {
     }
 }
 
-extension View {
-    func SpacedText(_ value: String) -> some View {
-        HStack {
-            Text(value)
-            Spacer()
-        }
-    }
-}
+//extension View {
+//    func SpacedText(_ value: String) -> some View {
+//        HStack {
+//            Text(value)
+//            Spacer()
+//        }
+//    }
+//}
