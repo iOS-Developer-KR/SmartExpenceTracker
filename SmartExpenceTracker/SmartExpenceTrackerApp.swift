@@ -16,7 +16,7 @@ struct SmartExpenceTrackerApp: App {
     
     init() {
         do {
-            modelContainer = try ModelContainer(for: Receipts.self)
+            modelContainer = try ModelContainer(for: RecordReceipts.self)
         } catch {
             fatalError("Could not initialize ModelContainer")
         }
@@ -24,7 +24,7 @@ struct SmartExpenceTrackerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainContainer()
+            MainContainerView()
                 .environment(gpt)
                 .environment(topTabBarState)
                 

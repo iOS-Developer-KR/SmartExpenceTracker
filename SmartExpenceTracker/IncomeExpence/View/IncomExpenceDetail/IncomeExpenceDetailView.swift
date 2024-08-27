@@ -9,8 +9,9 @@ import SwiftUI
 
 
 struct IncomeExpenceDetailView: View {
-    
+    @Environment(ViewState.self) private var viewState
     @Bindable var recordReceipts: RecordReceipts
+    @State private var editAmount: Bool = false
     
     var body: some View {
         
@@ -28,20 +29,38 @@ struct IncomeExpenceDetailView: View {
         }
         .navigationTitle("상세 내역")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            viewState.topTabBarExist = false
+        }
         
     }
     
     @ViewBuilder private var HeaderComponent: some View {
         HStack {
             recordReceipts.category.icon
+                .foregroundStyle(recordReceipts.category.color)
             Text(recordReceipts.title)
             Spacer()
         }.padding()
         
         HStack {
             Text("\(recordReceipts.amount)원")
+            Button {
+                editAmount = true
+            } label: {
+                Image(systemName: "pencil")
+                    .foregroundStyle(Color.gray)
+                    .bold()
+            }
             Spacer()
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
+        .sheet(isPresented: $editAmount, content: {
+            CalculatorView(displayText: recordReceipts.amount.description, amount: $recordReceipts.amount)
+                .presentationDetents([.fraction(0.65)])
+                .presentationDragIndicator(.visible)
+                .padding()
+        })
     }
     
     @ViewBuilder private var MemoComponent: some View {
@@ -52,7 +71,8 @@ struct IncomeExpenceDetailView: View {
                 Text("메모")
                     .foregroundStyle(Color.white)
                 Spacer()
-                Text(recordReceipts.memo.isEmpty ? "메모리를 남겨보세요" : recordReceipts.memo)
+                Text(recordReceipts.memo.isEmpty ? "메모를 남겨보세요" : recordReceipts.memo)
+                    .foregroundStyle(recordReceipts.memo.isEmpty ? Color.accentColor : Color.white)
             }
             .padding(.horizontal)
         }
@@ -60,7 +80,7 @@ struct IncomeExpenceDetailView: View {
     
     @ViewBuilder private var CategoryComponent: some View {
         NavigationLink {
-            
+            EditCategoryView(recipts: recordReceipts)
         } label: {
             HStack {
                 Text("카테고리 설정")
@@ -84,6 +104,7 @@ struct IncomeExpenceDetailView: View {
 #Preview {
     NavigationStack {
         IncomeExpenceDetailView(recordReceipts: SampleData.receiptDefaultModel.first!)
+            .environment(ViewState())
     }
 }
 

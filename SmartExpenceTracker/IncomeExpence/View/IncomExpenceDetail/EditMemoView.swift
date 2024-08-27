@@ -16,7 +16,7 @@ struct EditMemoView: View {
             .onAppear {
                 textFieldInFocus.toggle()
             }
-            .multilineTextAlignment(.trailing)
+            .multilineTextAlignment(.center)
     }
 }
 

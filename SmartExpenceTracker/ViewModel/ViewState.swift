@@ -10,6 +10,7 @@ import SwiftUI
 
 @Observable
 class ViewState {
-    var stack = NavigationPath()
+//    var stack = NavigationPath()//
+    var stack: [String] = []
     var topTabBarExist = true
 }

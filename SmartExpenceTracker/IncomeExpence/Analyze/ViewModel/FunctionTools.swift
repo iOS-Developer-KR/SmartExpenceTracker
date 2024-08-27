@@ -26,7 +26,7 @@ typealias PropertyType = ChatQuery.ChatCompletionToolParam.FunctionDefinition.Fu
 let titleProm = PropertyType(type: .string, description: "title or description of the expense")
 let amountProm = PropertyType(type: .integer, description: "total payment. If you're not sure, just use USD as default value")
 let categoryProm = PropertyType(type: .string, description: "the category of expense. Set category based on the title of expense", enum: Category.allCases.map { $0.rawValue })
-let dateProm = PropertyType(type: .string, description: "Date of expense. Set date using of this reciepts information, the date must be formatted yyy-MM-dd")
+let dateProm = PropertyType(type: .string, description: "Date of expense. Set date using of this reciepts information, the date must be formatted yyyy-MM-dd HH:mm")
 let objectProm = PropertyType(type: .string, description: "Set the each object name from this reciepts")
 let priceProm = PropertyType(type: .integer, description: "Set the each object price from this reciepts. If you're not sure, just use USD as default value")
 

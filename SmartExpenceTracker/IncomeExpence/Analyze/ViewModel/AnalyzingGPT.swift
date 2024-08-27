@@ -14,20 +14,16 @@ import UIKit
 
 @Observable
 class AnalyzingGPT {
-    var result: Receipts? {
-        didSet {
-            print("레시피 세팅오나료")
-        }
-    }
-    var marchants: [Marchandize] = []
-    var analyzed: Bool = true {
-        didSet {
-            print("값이 왜 바뀌는데:\(self.analyzed)")
-        }
-    }
-    var analyzing: Bool = false
+    var result: Receipts?
+    var marchants: [Marchandize] = [Marchandize(price: 1, object: "abc"), Marchandize(price: 2, object: "abc"), Marchandize(price: 3, object: "abc")]
+    var analyzed: Bool = true
+    var finishAnalyze: Bool = false
     var isShowingCamera: Bool = false
-    var selectedImage: UIImage?
+    var selectedImage: UIImage? {
+        didSet {
+            print("selectedImage setted")
+        }
+    }
     
     var openAI = OpenAI(apiToken: "sk-zz4yHGCwdO-3nIQSa5Q_YbM-RPhHuIuJ1ouzVUqN-qT3BlbkFJF91EyYcFGV4vgEmYib2C9vIxHxMFFgfDIFpESrTjgA")
     
@@ -38,17 +34,14 @@ class AnalyzingGPT {
     }
     
     @MainActor
-    func analyze(pressed: Binding<Bool>) {
+    func analyze() {
         reset()
-
-        guard let jpegData = selectedImage?.jpegData(compressionQuality: 0.1) else { return }
-        
+        guard let jpegData = selectedImage?.jpegData(compressionQuality: 0.01) else { return }
         let bcf = ByteCountFormatter()
         bcf.allowedUnits = [.useMB]
         bcf.countStyle = .file
         let string = bcf.string(fromByteCount: Int64(jpegData.count))
         print("formatted result: \(string)")
-        
         let imageData: Data
         imageData = (selectedImage?.scaleToFit().scaledJPGData())!
         
@@ -65,14 +58,12 @@ class AnalyzingGPT {
                 let chatsStream = try await self.openAI.chats(query: ChatQuery(messages: [.user(imageParam)], model: .gpt4_o, tools: tools))
                 
                 for chat in chatsStream.choices {
-                    print("🐱" + (chat.message.toolCalls?.first?.function.arguments.description ?? "아오"))
+                    print("🐱" + (chat.message.toolCalls?.first?.function.arguments.description ?? "값없음"))
                         for tool in chat.message.toolCalls! {
                             print(tool.function.name + "🐥" + tool.function.arguments.description)
-                            guard let arg = tool.function.arguments.data(using: .utf8) else {
-                                return
-                            }
+                            guard let arg = tool.function.arguments.data(using: .utf8) else { return }
                             self.analyzed = true
-                            
+                            print(arg)
                             switch tool.function.name {
                             case "addExpenseLog" :
                                 self.result = try! JSONDecoder().decode(Receipts.self, from: arg)
@@ -85,11 +76,10 @@ class AnalyzingGPT {
                                 break
                             }
                         }
+                        self.finishAnalyze = true
+                     
 
-                    pressed.wrappedValue = true
-                    }
-
-
+                }
             } catch {
                 print(error.localizedDescription)
             }
