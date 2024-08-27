@@ -78,3 +78,28 @@ class RecordReceipts: Codable, Identifiable {
     var marchant: [Marchandize]
 }
 ```
+
+
+## 분석하는 레이어 UI
+```swift
+Rectangle()
+    .fill(Color.green)
+    .frame(width: 400, height: 5)
+    .opacity(isOpacity ? 0.3 : 0.8)
+    .offset(y: isOffset ? -20 : UIScreen.main.bounds.height - 100)
+    .overlay(
+        Rectangle()
+            .fill(Color.green)
+            .frame(width: 400, height: 50)
+            .opacity(isOpacity ? 0.3 : 0.8)
+            .offset(y: isOffset ? 0 : UIScreen.main.bounds.height - 120)
+    )
+    .onAppear {
+        withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+            isOpacity.toggle()
+        }
+        withAnimation(Animation.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
+            isOffset.toggle()
+        }
+    }
+```
