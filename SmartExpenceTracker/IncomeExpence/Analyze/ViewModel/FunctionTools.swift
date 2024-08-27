@@ -11,14 +11,7 @@ import OpenAI
 enum AIAssistantFunctionType: String {
     case addExpenseLog
     case listExpenses
-//    case visualizeExpenses
 }
-
-let titleProp = (key: "title",
-                 value: [
-                    "type": "string",
-                    "description": "title or description of the expense"
-                 ])
 
 
 typealias PropertyType = ChatQuery.ChatCompletionToolParam.FunctionDefinition.FunctionParameters.Property
