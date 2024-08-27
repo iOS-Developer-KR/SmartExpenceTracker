@@ -4,7 +4,7 @@ Chat GPT를 이용한 영수증을 분석 및 저장하는 앱입니다
 
 ## Preview
 <div align="center">
-  <mp4 src="ImageAsset/AnalyzedView.gif" width="300" height="600"/>
+  <img src="ImageAsset/AnalyzedView.gif" width="100" height="200"/>
 </div>
 
 ## GPT API Key 발급받기
