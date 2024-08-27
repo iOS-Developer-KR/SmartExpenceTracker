@@ -74,11 +74,7 @@ struct MonthSelectionView: View {
         return components1.year == components2.year && components1.month == components2.month
     }
     
-    func dateToString(date: Date, format: String) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        return formatter.string(from: date)
-    }
+    
 }
 
 
