@@ -59,4 +59,25 @@ enum Category: String, CaseIterable, Codable {
                 return Image(systemName: "creditcard")
             }
         }
+    
+    var color: Color {
+        switch self {
+        case .none:
+                .gray
+        case .transfer:
+                .accentColor
+        case .shopping:
+                .red
+        case .transport:
+                .cyan
+        case .cafe:
+                .green
+        case .convenienceStore:
+                .yellow
+        case .insuranceTax:
+                .gray
+        case .otherFinance:
+                .green
+        }
+    }
 }

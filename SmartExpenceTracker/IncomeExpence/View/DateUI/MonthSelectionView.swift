@@ -15,12 +15,7 @@ struct MonthSelectionView: View {
     var calendar: Calendar = Calendar(identifier: .iso8601)
     var startDate: Date = Date() // 기준 날짜를 설정 (오늘 날짜)
     
-    // 날짜 포맷터 설정
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월" // 연도와 월 형식 설정
-        return formatter
-    }
+
     
     var body: some View {
         ScrollView {
@@ -36,14 +31,14 @@ struct MonthSelectionView: View {
                         dismiss()
                     } label: {
                         HStack {
-                            Text(dateFormatter.string(from: date)) // 날짜를 문자열로 변환하여 표시
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .contentShape(Rectangle())
-                                .foregroundStyle(Color.primary)
-                                .padding(5)
-                            Image(systemName: "checkmark")
-                                .opacity(isSameMonthAndYear(selectedDate, date) ? 1.0 : 0.0)
-                        }
+                            Text(dateToString(date: date, format: "yyyy년 MM월"))
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                                    .contentShape(Rectangle())
+                                                    .foregroundStyle(Color.primary)
+                                                    .padding(5)
+                                                Image(systemName: "checkmark")
+                                                    .opacity(isSameMonthAndYear(selectedDate, date) ? 1.0 : 0.0)
+                                            }
                     }
                     .contentShape(Rectangle())
                 }
@@ -78,6 +73,8 @@ struct MonthSelectionView: View {
         let components2 = calendar.dateComponents([.year, .month], from: date2)
         return components1.year == components2.year && components1.month == components2.month
     }
+    
+    
 }
 
 
