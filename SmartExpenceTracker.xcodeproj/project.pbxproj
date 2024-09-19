@@ -128,7 +128,6 @@
 		2B64B1952C5A2F3000F7A74B /* Analyze */ = {
 			isa = PBXGroup;
 			children = (
-				2B64B1982C5A2F4400F7A74B /* Model */,
 				2B64B1962C5A2F3C00F7A74B /* View */,
 				2B64B1972C5A2F4000F7A74B /* ViewModel */,
 			);
@@ -151,13 +150,6 @@
 				2B2588282C6F0B1500A2655A /* FunctionTools.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		2B64B1982C5A2F4400F7A74B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		2B64B1992C5A2FD100F7A74B /* Model */ = {

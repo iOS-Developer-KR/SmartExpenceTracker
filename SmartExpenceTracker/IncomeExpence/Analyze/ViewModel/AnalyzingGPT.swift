@@ -25,18 +25,18 @@ class AnalyzingGPT {
         }
     }
     
-    var openAI = OpenAI(apiToken: "sk-zz4yHGCwdO-3nIQSa5Q_YbM-RPhHuIuJ1ouzVUqN-qT3BlbkFJF91EyYcFGV4vgEmYib2C9vIxHxMFFgfDIFpESrTjgA")
+    var openAI = OpenAI(apiToken: "sk-lvzv8dI292a4LlTfRMoz_gdBP7l1MD4TrrfATOHGgJT3BlbkFJTBtg-8b1WNmWaYB7tQi8C9yS3oWr5s3YN5EjERpvIA")
     
     func reset() {
-            self.result = .none
-            self.marchants = []
-            self.analyzed = false
+        self.result = .none
+        self.marchants = []
+        self.analyzed = false
     }
     
     @MainActor
     func analyze() {
         reset()
-        guard let jpegData = selectedImage?.jpegData(compressionQuality: 0.01) else { return }
+        guard let jpegData = selectedImage?.jpegData(compressionQuality: 1.0) else { return }
         let bcf = ByteCountFormatter()
         bcf.allowedUnits = [.useMB]
         bcf.countStyle = .file

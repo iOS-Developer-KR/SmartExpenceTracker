@@ -34,6 +34,7 @@ struct AccessCameraView: UIViewControllerRepresentable {
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @Binding var isPresented: Bool
     @Binding var selectedImage: UIImage?
+    @Environment(\.dismiss) var dismiss
     
     init(isPresented: Binding<Bool>, selectedImage: Binding<UIImage?>) {
         _isPresented = isPresented
@@ -41,12 +42,13 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
        
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         if let uiImage = info[.originalImage] as? UIImage {
             selectedImage = uiImage
         }
         isPresented = false
-        
+        // Dismiss the sheet using the presentingViewController
+        picker.presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
+    //
+
 }

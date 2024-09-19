@@ -31,7 +31,6 @@ struct IncomeExpenceView: View {
             DateSelection(currentDate: $currentDate, selected: $selectedMonth)
             balanceSection
             ScrollView {
-                
                 receiptsList
             }
             Spacer()
@@ -70,6 +69,10 @@ struct IncomeExpenceView: View {
         }
         .onChange(of: selectedImageItem) { _, newItem in
             loadImage(from: newItem)
+        }
+        .onChange(of: bindableGPT.selectedImage) { oldValue, newValue in
+            print("||||||||")
+            viewState.stack.append("AnalyzingPhotoView")
         }
     }
     
